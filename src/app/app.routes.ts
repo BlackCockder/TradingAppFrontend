@@ -4,7 +4,7 @@ import {DevComponent} from "./dev/Dev.component";
 export const routes: Routes = [
 //   {path: 'register', component: RegisterComponent},
 //   {path: 'guide', component: SellerGuideComponent},
-//   {path: '', redirectTo: '/dev', pathMatch: 'full'},
+  {path: '', redirectTo: '/dev', pathMatch: 'full'},
 //   {path: 'welcome', component: WelcomeComponent},
 //   {path: 'profiles', component: ProfilesComponent},
 //   {

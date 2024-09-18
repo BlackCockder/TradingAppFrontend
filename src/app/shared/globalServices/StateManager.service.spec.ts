@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { StateManagerService } from './StateManager.service';
+import {StateManagerService} from './StateManager.service';
 
 describe('StateManagerServiceService', () => {
   let service: StateManagerService;

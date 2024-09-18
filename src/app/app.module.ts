@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {AppComponent} from "./app.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {AppConfigModule} from "./app-config.module";
 import {RouterOutlet} from "@angular/router";
 import {DevModule} from "./dev/module/Dev.module";
-
 
 
 @NgModule({
@@ -19,10 +18,10 @@ import {DevModule} from "./dev/module/Dev.module";
     RouterOutlet,
     DevModule
   ],
-  exports: [
-  ],
+  exports: [],
   bootstrap: [
     AppComponent
   ]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, catchError, map, Observable, of, switchMap} from "rxjs";
 import {HttpClient, HttpHandlerFn, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {serverIP} from "../../main";
@@ -6,7 +6,6 @@ import {RefreshUserData} from "./interfaces/RefreshUserData.interface";
 import {RefreshResponse} from "./interfaces/RefreshResponse.interface";
 import {StateManagerService} from "../shared/globalServices/StateManager.service";
 import {LoginFormPayload} from "./interfaces/LoginFormPayload.interface";
-
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,6 @@ export class AuthService {
     this.setSessionCloseEvent();
   }
 
-
   public loginUser(loginFormPayload: LoginFormPayload): Observable<any> {
     return this.http.post(`${serverIP}api/auth/login`, loginFormPayload, {
       observe: "response",
@@ -27,66 +25,53 @@ export class AuthService {
     });
   }
 
-
   public setUserID(ID: number): void {
     sessionStorage.setItem("userid", JSON.stringify(ID));
   }
-
 
   public getUserID(): number {
     return Number(sessionStorage.getItem("userid"));
   }
 
-
   public clearUserID(): void {
     sessionStorage.removeItem("userid");
   }
-
 
   public setUsername(user: string): void {
     sessionStorage.setItem('username', JSON.stringify(user));
   }
 
-
   public getUserName(): string {
     return JSON.parse(sessionStorage.getItem('username') ?? '""');
   }
-
 
   public clearUsername(): void {
     sessionStorage.removeItem('username');
   }
 
-
   public setLoggedInFlag(state: boolean): void {
     sessionStorage.setItem('isLoggedInFlag', JSON.stringify(state));
   }
-
 
   public getLoggedInFlag(): boolean {
     return JSON.parse(sessionStorage.getItem('isLoggedInFlag') ?? '""') === 'true';
   }
 
-
   public setAuthToken(token: string): void {
     sessionStorage.setItem("authToken", JSON.stringify(token));
   }
-
 
   public getAuthToken(): string {
     return JSON.parse(sessionStorage.getItem('authToken') ?? '""');
   }
 
-
   public clearAuthToken(): void {
     sessionStorage.removeItem('authToken');
   }
 
-
   public authorizationNeeded() {
     return new HttpHeaders({'auth-req': 'true'});
   }
-
 
   public refreshSession(): Observable<string> {
     let userData: RefreshUserData = {
@@ -104,13 +89,12 @@ export class AuthService {
       observe: "response"
     }).pipe(
       map(response => {
-          if (response.body != null && "authenticationToken" in response.body) {
-            this.setAuthToken(response.body.authenticationToken);
-            return response.body.authenticationToken;
-          }
-          else {
-            console.error("An unknown error has occurred, report it immediately!");
-            return '';
+        if (response.body != null && "authenticationToken" in response.body) {
+          this.setAuthToken(response.body.authenticationToken);
+          return response.body.authenticationToken;
+        } else {
+          console.error("An unknown error has occurred, report it immediately!");
+          return '';
         }
       }),
       catchError(err => {
@@ -121,7 +105,6 @@ export class AuthService {
     );
   }
 
-
   public addTokenToReq(req: HttpRequest<any>, jwtToken: string) {
     return req.clone({
       headers: req.headers.set('Authorization',
@@ -129,11 +112,9 @@ export class AuthService {
     });
   }
 
-
   public checkForAuthorisationRequest(req: HttpRequest<any>): boolean {
     return req.headers.get("X-auth-req") === 'true';
   }
-
 
   public handleAuthErrors(req: HttpRequest<any>, next: HttpHandlerFn) {
     if (!this.isTokenRefreshingSubject.getValue()) {
@@ -156,14 +137,12 @@ export class AuthService {
     }
   }
 
-
   public logoutUser(): void {
     this.clearUsername();
     this.clearAuthToken();
     this.setLoggedInFlag(false);
     this.clearUserID();
   }
-
 
   private setSessionCloseEvent() {
     window.addEventListener('unload', () => {
@@ -179,6 +158,4 @@ export class AuthService {
       );
     });
   }
-
-
 }

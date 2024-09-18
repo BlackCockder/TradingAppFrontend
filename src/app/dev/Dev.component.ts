@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { GlobalErrorHandlerService } from "../shared/globalErrorHandler/GlobalErrorHandler.service";
-import { Subscription } from "rxjs";
+import {Component} from '@angular/core';
+import {GlobalErrorHandlerService} from "../shared/globalErrorHandler/GlobalErrorHandler.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-dev',
@@ -11,21 +11,19 @@ export class DevComponent {
   errorSubscription!: Subscription;
   displayError!: string;
 
-  constructor(private globalErrorHandlerService: GlobalErrorHandlerService) { }
+  constructor(private globalErrorHandlerService: GlobalErrorHandlerService) {
+  }
 
   ngOnInit() {
-    this.errorSubscription = this.globalErrorHandlerService.errorSubject$.subscribe((error: Error | null) => {
-        console.log("triggered", error);
+    this.errorSubscription = this.globalErrorHandlerService.getErrorSubjectObservable().subscribe((error: Error | null) => {
+      if (error) {
+        this.displayError = error.message;
+      }
     });
   }
 
   public errorTest(): void {
-      throw new Error('Async Test Error');
-  }
-
-
-  public errorTest2(): void {
-    console.log(this.globalErrorHandlerService.errorSubject.getValue());
+    throw new Error('nigger');
   }
 
   ngOnDestroy() {

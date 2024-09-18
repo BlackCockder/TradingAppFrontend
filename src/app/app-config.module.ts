@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {AppConfig} from "./app.config";
 
 @NgModule({
@@ -6,4 +6,5 @@ import {AppConfig} from "./app.config";
     AppConfig.providers
   ]
 })
-export class AppConfigModule { }
+export class AppConfigModule {
+}
