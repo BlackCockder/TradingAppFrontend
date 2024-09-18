@@ -49,7 +49,7 @@ export class AuthService {
 
 
   public getUserName(): string {
-    return sessionStorage.getItem("username") ? JSON.parse(sessionStorage.getItem("username")) : '';
+    return JSON.parse(sessionStorage.getItem('username') ?? '""');
   }
 
 
@@ -64,7 +64,7 @@ export class AuthService {
 
 
   public getLoggedInFlag(): boolean {
-    return JSON.parse(sessionStorage.getItem('isLoggedInFlag')) === 'true';
+    return JSON.parse(sessionStorage.getItem('isLoggedInFlag') ?? '""') === 'true';
   }
 
 
@@ -74,7 +74,7 @@ export class AuthService {
 
 
   public getAuthToken(): string {
-    return sessionStorage.getItem("authToken") ? JSON.parse(sessionStorage.getItem("authToken")) : '';
+    return JSON.parse(sessionStorage.getItem('authToken') ?? '""');
   }
 
 
@@ -104,7 +104,7 @@ export class AuthService {
       observe: "response"
     }).pipe(
       map(response => {
-          if ("authenticationToken" in response.body) {
+          if (response.body != null && "authenticationToken" in response.body) {
             this.setAuthToken(response.body.authenticationToken);
             return response.body.authenticationToken;
           }
@@ -131,11 +131,14 @@ export class AuthService {
 
 
   public checkForAuthorisationRequest(req: HttpRequest<any>): boolean {
-    return req.headers.get("X-auth-req") === 'true'
+    return req.headers.get("X-auth-req") === 'true';
   }
-    private handleAuthErrors(req: HttpRequest<any>, next: HttpHandlerFn) {
+
+
+  public handleAuthErrors(req: HttpRequest<any>, next: HttpHandlerFn) {
     if (!this.isTokenRefreshingSubject.getValue()) {
       this.isTokenRefreshingSubject.next(true);
+
       return this.refreshSession().pipe(
         switchMap((refreshTokenResponse: string) => {
           if (refreshTokenResponse) {
@@ -143,11 +146,11 @@ export class AuthService {
             return next(this.addTokenToReq(req, refreshTokenResponse));
           } else {
             this.isTokenRefreshingSubject.next(false);
-            this.logoutUser()
+            this.logoutUser();
             throw new Error("User session ended");
           }
         })
-      )
+      );
     } else {
       throw new Error("Token is refreshing");
     }

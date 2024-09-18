@@ -1,9 +1,10 @@
 import {Routes} from "@angular/router";
+import {DevComponent} from "./dev/Dev.component";
 
 export const routes: Routes = [
 //   {path: 'register', component: RegisterComponent},
 //   {path: 'guide', component: SellerGuideComponent},
-//   {path: '', redirectTo: '/devpage', pathMatch: 'full'},
+//   {path: '', redirectTo: '/dev', pathMatch: 'full'},
 //   {path: 'welcome', component: WelcomeComponent},
 //   {path: 'profiles', component: ProfilesComponent},
 //   {
@@ -28,6 +29,6 @@ export const routes: Routes = [
 //   {path: 'help-center', component: HelpCenterComponent},
 //   {path: 'news', component: NewsComponent, canActivate: [isAdminGuard]},
 //   {path: 'blog', component: BlogComponent},
-//   {path: 'devpage', component: DevComponent},
+  {path: 'dev', component: DevComponent},
 //   {path: '**', component: Page404Component}
 ];
