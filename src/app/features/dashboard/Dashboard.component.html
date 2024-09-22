@@ -1,0 +1,42 @@
+<section id="dashboard-core" class="w-screen-improved h-screen">
+  <section id="dashboard-sidebar" class="h-full hidden md:w-40 md:block bg-gray-med">
+    <div class="w-full h-dashboard-sidebar-logo flex justify-center items-center">
+      <div class="flex items-center justify-center"></div>
+      <img
+        src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-6/316421925_1438259539997448_8125312075424248893_n.jpg?stp=dst-jpg_p526x296&_nc_cat=106&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=VR9czb8swnMQ7kNvgH0T4xW&_nc_ht=scontent-waw2-2.xx&_nc_gid=AqsxzQuTnbs8gnvq7oz9ib-&oh=00_AYA90Xmu5c2KbIzZY1QX56w0DW_JjeXD-nLw-x9gA_aVcQ&oe=66F64ADB"
+        class="w-10 h-10 sidebar-img-round" alt="TradingApp Logo">
+      <p class="font-semibold text-base text-white op-text-base pl-2">TradingApp</p>
+
+    </div>
+    <div class="overflow-auto sidebar-button-wrapper">
+      <div class="w-full h-20 flex items-center justify-center cursor-pointer relative"
+           [ngClass]="{'bg-gray-light': button.highlighted,}" [routerLink]="button.redirectsTo"
+           (click)="buttonClicked(i)"
+           *ngFor="let button of sidebarButtons; let i = index">
+        <div *ngIf="button.highlighted" class="absolute top-0 left-0 h-full w-1 sidebar-button-highlighter">
+
+        </div>
+        <div>
+          <div class="w-full h-6 text-white op-text-darker"
+               [ngClass]="{'op-text-base': button.highlighted, 'op-text-darker': !button.highlighted,}"
+               [innerHTML]="button.svg">
+
+          </div>
+          <p class="text-white"
+             [ngClass]="{'op-text-base': button.highlighted, 'op-text-darker': !button.highlighted,}">{{ button.buttonName }}</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section id="dashboard-header"
+           class="w-dashboard-header h-dashboard-header bg-amber-700 absolute top-0 left-0 md:left-40">
+
+  </section>
+  <section class="absolute w-dashboard-content h-dashboard-content pos-dashboard-content">
+    <router-outlet>
+      <ng-content></ng-content>
+
+    </router-outlet>
+  </section>
+</section>

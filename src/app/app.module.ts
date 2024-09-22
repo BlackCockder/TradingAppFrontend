@@ -5,6 +5,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {AppConfigModule} from "./app-config.module";
 import {RouterOutlet} from "@angular/router";
 import {DevModule} from "./dev/module/Dev.module";
+import {FeaturesModule} from "./features/featuresModule/Features.module";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {DevModule} from "./dev/module/Dev.module";
     BrowserModule,
     AppConfigModule,
     RouterOutlet,
-    DevModule
+    DevModule,
+    FeaturesModule
   ],
   exports: [],
   bootstrap: [

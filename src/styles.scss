@@ -1,3 +1,22 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+body {
+  background-color: #3B3E41;
+}
+.bg-gray-med {
+  background-color: #1E2124;
+}
+.bg-gray-light {
+  background-color: #3B3E41;
+}
+.op-text-base {
+  opacity: 85%;
+}
+.op-text-darker {
+  opacity: 60%;
+}
+.w-screen-improved {
+  width: calc(100vw - (100vw - 100%));
+}

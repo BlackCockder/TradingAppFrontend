@@ -23,7 +23,7 @@ export class DevComponent {
   }
 
   public errorTest(): void {
-    throw new Error('nigger');
+    throw new Error('niggerrrrrrrrrrrrrrrrrrrrrrrrrr');
   }
 
   ngOnDestroy() {
