@@ -1,14 +1,15 @@
-<section id="dashboard-core" class="w-screen-improved h-screen">
-  <section id="dashboard-sidebar" class="h-full hidden md:w-40 md:block bg-gray-med">
+<section id="dashboard-core" class="flex items-stretch">
+  <section id="dashboard-sidebar-filler" class="h-full hidden md:w-40 md:flex md:relative flex-col bg-gray-med"></section>
+  <section id="dashboard-sidebar" class="h-screen hidden md:w-40 md:flex md:fixed md:top-0 md:left-0 flex-col bg-gray-med">
     <div class="w-full h-dashboard-sidebar-logo flex justify-center items-center">
       <div class="flex items-center justify-center"></div>
       <img
         src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-6/316421925_1438259539997448_8125312075424248893_n.jpg?stp=dst-jpg_p526x296&_nc_cat=106&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=VR9czb8swnMQ7kNvgH0T4xW&_nc_ht=scontent-waw2-2.xx&_nc_gid=AqsxzQuTnbs8gnvq7oz9ib-&oh=00_AYA90Xmu5c2KbIzZY1QX56w0DW_JjeXD-nLw-x9gA_aVcQ&oe=66F64ADB"
         class="w-10 h-10 sidebar-img-round" alt="TradingApp Logo">
-      <p class="font-semibold text-base text-white op-text-base pl-2">TradingApp</p>
+      <p class="font-semibold text-base text-white op-text-base pl-2">Dashboard</p>
 
     </div>
-    <div class="overflow-auto sidebar-button-wrapper">
+    <div class="overflow-auto sidebar-button-wrapper flex-1">
       <div class="w-full h-20 flex items-center justify-center cursor-pointer relative"
            [ngClass]="{'bg-gray-light': button.highlighted,}" [routerLink]="button.redirectsTo"
            (click)="buttonClicked(i)"
@@ -28,15 +29,21 @@
 
       </div>
     </div>
-  </section>
-  <section id="dashboard-header"
-           class="w-dashboard-header h-dashboard-header bg-amber-700 absolute top-0 left-0 md:left-40">
+    <div class="absolute w-full h-20 bottom-0 left-0">
 
+    </div>
   </section>
-  <section class="absolute w-dashboard-content h-dashboard-content pos-dashboard-content">
-    <router-outlet>
-      <ng-content></ng-content>
+  <section class="flex flex-col flex-1">
+    <section id="dashboard-header"
+             class="w-full h-dashboard-header bg-amber-700">
+    </section>
+    <section class="w-full h-dashboard-content flex-1">
+      <div id="dashboard-core-wrapper" class="p-10 dashboard-core-wrapper-main">
+        <router-outlet>
+          <ng-content></ng-content>
+        </router-outlet>
+      </div>
+    </section>
+  </section>
 
-    </router-outlet>
-  </section>
 </section>

@@ -4,7 +4,7 @@ import {AppComponent} from "./app.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {AppConfigModule} from "./app-config.module";
 import {RouterOutlet} from "@angular/router";
-import {DevModule} from "./dev/module/Dev.module";
+import {DevModule} from "./dev/modules/Dev.module";
 import {FeaturesModule} from "./features/featuresModule/Features.module";
 
 

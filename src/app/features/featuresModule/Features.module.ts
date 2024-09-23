@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DashboardModule} from "../dashboard/module/Dashboard.module";
+import {DashboardModule} from "../dashboard/modules/Dashboard.module";
 
 
 @NgModule({
