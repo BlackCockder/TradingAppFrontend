@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardHeaderComponent } from './dashboard-header.component';
+import { DashboardHeaderComponent } from './DashboardHeader.component';
 
 describe('DashboardHeaderComponent', () => {
   let component: DashboardHeaderComponent;

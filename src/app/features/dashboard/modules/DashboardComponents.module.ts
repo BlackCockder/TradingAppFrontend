@@ -8,7 +8,7 @@ import {ServicesComponent} from "../components/services/services.component";
 import {OffersComponent} from "../components/offers/offers.component";
 import {ClientPanelComponent} from "../components/client-panel/client-panel.component";
 import {CompanyComponent} from "../components/company/company.component";
-import {DashboardModule} from "./Dashboard.module";
+import {DashboardWindowTemplateComponent} from "../templates/dashboardWindow/DashboardWindow.template.component";
 
 
 
@@ -22,10 +22,13 @@ import {DashboardModule} from "./Dashboard.module";
     OffersComponent,
     ClientPanelComponent,
     CompanyComponent,
+    DashboardWindowTemplateComponent
   ],
   imports: [
     CommonModule,
-    DashboardModule,
+  ],
+  exports: [
+    DashboardWindowTemplateComponent
   ]
 })
 export class DashboardComponentsModule { }
