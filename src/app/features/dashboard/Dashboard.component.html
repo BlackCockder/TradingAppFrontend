@@ -1,5 +1,5 @@
 <section id="dashboard-core" class="flex items-stretch">
-  <section id="dashboard-sidebar-filler" class="h-full hidden md:w-40 md:flex md:relative flex-col bg-gray-med"></section>
+  <div id="dashboard-sidebar-filler" class="h-screen hidden md:w-40 md:flex flex-col bg-gray-med"></div>
   <section id="dashboard-sidebar" class="h-screen hidden md:w-40 md:flex md:fixed md:top-0 md:left-0 flex-col bg-gray-med">
     <div class="w-full h-dashboard-sidebar-logo flex justify-center items-center">
       <div class="flex items-center justify-center"></div>
@@ -33,7 +33,7 @@
 
     </div>
   </section>
-  <section class="flex flex-col flex-1">
+  <section class="flex flex-col flex-grow">
     <section id="dashboard-header"
              class="w-full h-dashboard-header">
       <app-dashboard-header></app-dashboard-header>

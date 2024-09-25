@@ -7,12 +7,10 @@ $dashboard-split-breakpoint: 1280px;
 html, body {
   background-color: #3B3E41;
   min-height: 100%;
-  width: 100%;
+  width: 100vw;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal overflow */
-  display: flex; /* Ensure body behaves as a flex container */
-  flex-direction: column; /* Column layout to handle vertical expansion */
+  display: flex;
 }
 .bg-gray-med {
   background-color: #1E2124;

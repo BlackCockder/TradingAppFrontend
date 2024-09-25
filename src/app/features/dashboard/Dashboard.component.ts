@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {SidebarButton} from "./interfaces/SidebarButton.interface";
 import {SidebarButtonNames, SidebarButtonRedirects, SidebarButtonSVGs} from "./enums/SidebarButton.enum";
-import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
+import {DataProcessingService} from "../../shared/globalServices/DataProcessing.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,56 +11,56 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 export class DashboardComponent {
   sidebarButtons!: SidebarButton[];
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private dataProcessingService: DataProcessingService) {
   }
 
   ngOnInit() {
     this.sidebarButtons = [
       {
         buttonName: SidebarButtonNames.MANAGEMENT,
-        svg: this.sanitizeSVG(SidebarButtonSVGs.MANAGEMENT),
+        svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.MANAGEMENT),
         redirectsTo: SidebarButtonRedirects.MANAGEMENT,
         highlighted: false
       },
       {
         buttonName: SidebarButtonNames.OFFERS,
-        svg: this.sanitizeSVG(SidebarButtonSVGs.OFFERS),
+        svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.OFFERS),
         redirectsTo: SidebarButtonRedirects.OFFERS,
         highlighted: false
       },
       {
         buttonName: SidebarButtonNames.SERVICES,
-        svg: this.sanitizeSVG(SidebarButtonSVGs.SERVICES),
+        svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.SERVICES),
         redirectsTo: SidebarButtonRedirects.SERVICES,
         highlighted: false
       },
       {
         buttonName: SidebarButtonNames.CLIENT_PANEL,
-        svg: this.sanitizeSVG(SidebarButtonSVGs.CLIENT_PANEL),
+        svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.CLIENT_PANEL),
         redirectsTo: SidebarButtonRedirects.CLIENT_PANEL,
         highlighted: false
       },
       {
         buttonName: SidebarButtonNames.COMPANY,
-        svg: this.sanitizeSVG(SidebarButtonSVGs.COMPANY),
+        svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.COMPANY),
         redirectsTo: SidebarButtonRedirects.COMPANY,
         highlighted: false
       },
       {
         buttonName: SidebarButtonNames.SOCIAL,
-        svg: this.sanitizeSVG(SidebarButtonSVGs.SOCIAL),
+        svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.SOCIAL),
         redirectsTo: SidebarButtonRedirects.SOCIAL,
         highlighted: false
       },
       {
         buttonName: SidebarButtonNames.ACCOUNT,
-        svg: this.sanitizeSVG(SidebarButtonSVGs.ACCOUNT),
+        svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.ACCOUNT),
         redirectsTo: SidebarButtonRedirects.ACCOUNT,
         highlighted: false
       },
       {
         buttonName: SidebarButtonNames.SETTINGS,
-        svg: this.sanitizeSVG(SidebarButtonSVGs.SETTINGS),
+        svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.SETTINGS),
         redirectsTo: SidebarButtonRedirects.SETTINGS,
         highlighted: false
       },
@@ -68,13 +68,10 @@ export class DashboardComponent {
   }
 
 
-  sanitizeSVG(svgContent: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(svgContent);
-  }
-
-
   buttonClicked(button: number): void {
-    this.sidebarButtons.forEach((button) => {button.highlighted = false});
+    this.sidebarButtons.forEach((button: SidebarButton): void => {
+      button.highlighted = false
+    });
     this.sidebarButtons[button].highlighted = true;
   }
 }

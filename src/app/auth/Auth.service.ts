@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, catchError, map, Observable, of, switchMap} from "rxjs";
-import {HttpClient, HttpHandlerFn, HttpHeaders, HttpRequest} from "@angular/common/http";
+import {BehaviorSubject, catchError, map, Observable, switchMap, throwError} from "rxjs";
+import {HttpClient, HttpHandlerFn, HttpHeaders, HttpRequest, HttpResponse} from "@angular/common/http";
 import {serverIP} from "../../main";
 import {RefreshUserData} from "./interfaces/RefreshUserData.interface";
 import {RefreshResponse} from "./interfaces/RefreshResponse.interface";
-import {StateManagerService} from "../shared/globalServices/StateManager.service";
 import {LoginFormPayload} from "./interfaces/LoginFormPayload.interface";
 
 @Injectable({
@@ -13,16 +12,30 @@ import {LoginFormPayload} from "./interfaces/LoginFormPayload.interface";
 export class AuthService {
   private isTokenRefreshingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient, private stateMangerService: StateManagerService) {
+  constructor(private http: HttpClient) {
     this.setLoggedInFlag(this.getLoggedInFlag());
     this.setSessionCloseEvent();
   }
 
-  public loginUser(loginFormPayload: LoginFormPayload): Observable<any> {
-    return this.http.post(`${serverIP}api/auth/login`, loginFormPayload, {
-      observe: "response",
-      withCredentials: true
-    });
+  public loginUser(loginFormPayload: LoginFormPayload): Observable<boolean> {
+    return this.http.post<RefreshResponse>(`${serverIP}api/auth/login`, loginFormPayload, {
+      withCredentials: true,
+      observe: "response"
+    }).pipe(
+      map((response: HttpResponse<RefreshResponse>): boolean => {
+        if (response.body) {
+          this.setAuthToken(response.body.authenticationToken);
+          this.setUserID(response.body.id);
+          this.setUsername(response.body.username);
+          this.setLoggedInFlag(true);
+          return true;
+        }
+        return false;
+      }),
+      catchError(err => {
+        return throwError(() => new Error('User failed to log in', err));
+      })
+    )
   }
 
   public setUserID(ID: number): void {
@@ -81,26 +94,24 @@ export class AuthService {
     if (this.getUserName()) {
       userData.username = this.getUserName();
     } else {
-      return of('');
+      return throwError(() => new Error("Username not found in the sessionStorage"))
     }
 
-    return this.http.post<RefreshResponse>("http://localhost:8080/api/auth/refresh/token", userData, {
+    return this.http.post<RefreshResponse>(`${serverIP}api/auth/refresh/token`, userData, {
       withCredentials: true,
       observe: "response"
     }).pipe(
-      map(response => {
-        if (response.body != null && "authenticationToken" in response.body) {
+      map((response: HttpResponse<RefreshResponse>) => {
+        if (response.body != null && "authenticationToken" in response.body &&  typeof response.body.authenticationToken === 'string') {
           this.setAuthToken(response.body.authenticationToken);
           return response.body.authenticationToken;
         } else {
-          console.error("An unknown error has occurred, report it immediately!");
+          throwError(() => new Error( "Failed to refresh the session"));
           return '';
         }
       }),
       catchError(err => {
-        console.error("User session ended!");
-        console.error(err);
-        return '';
+        return throwError(() => new Error("User session ended", err));
       })
     );
   }
