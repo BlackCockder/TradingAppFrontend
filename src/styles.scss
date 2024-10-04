@@ -7,9 +7,8 @@ $dashboard-split-breakpoint: 1280px;
 html, body {
   background-color: #3B3E41;
   min-height: 100%;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
+  width: calc(100vw - (100vw - 100%));
+  max-width: calc(100vw - (100vw - 100%));
   display: flex;
 }
 .bg-gray-med {
@@ -28,7 +27,7 @@ html, body {
   opacity: 60%;
 }
 .w-screen-improved {
-  width: calc(100vw - (100vw - 100%));
+  max-width: calc(100vw - (100vw - 100%));
 }
 .dashboard-left-side{
   width: 100%;
@@ -38,12 +37,12 @@ html, body {
 }
 @media (min-width: $dashboard-split-breakpoint) {
   .dashboard-left-side{
-    width: calc(50% - 1.25rem);
+    width: calc(50% - 0.75rem);
     height: 100%;
-    margin-right: 2.5rem;
+    margin-right: 1.5rem;
   }
   .dashboard-right-side{
-    width: calc(50% - 1.25rem);
+    width: calc(50% - 0.75rem);
     height: 100%;
   }
   .dashboard-core-change {

@@ -23,7 +23,7 @@
                [innerHTML]="button.svg">
 
           </div>
-          <p class="text-white"
+          <p class="text-white text-base"
              [ngClass]="{'op-text-base': button.highlighted, 'op-text-darker': !button.highlighted,}">{{ button.buttonName }}</p>
         </div>
 
@@ -39,7 +39,7 @@
       <app-dashboard-header></app-dashboard-header>
     </section>
     <section class="w-full h-dashboard-content flex-1">
-      <div id="dashboard-core-wrapper" class="p-10 dashboard-core-wrapper-main">
+      <div id="dashboard-core-wrapper" class="p-6 dashboard-core-wrapper-main">
         <router-outlet>
           <ng-content></ng-content>
         </router-outlet>

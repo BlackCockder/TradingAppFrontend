@@ -4,7 +4,8 @@ import {AuthService} from "../Auth.service";
 import {catchError} from "rxjs";
 
 export const AuthInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
-  let authService: AuthService = inject(AuthService);
+  console.log('interceptro triggerred')
+  const authService: AuthService = inject(AuthService);
 
   if (authService.checkForAuthorisationRequest(req)) {
     if (authService.getAuthToken()) {

@@ -1,7 +1,7 @@
 import {SafeHtml} from "@angular/platform-browser";
 
 export interface DisplayBalanceInterface {
-  color: string,
+  color: number,
   balance: number,
   svg: string | SafeHtml
 }

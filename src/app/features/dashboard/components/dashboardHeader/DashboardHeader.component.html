@@ -1,4 +1,4 @@
-<section class="w-full h-full px-10 flex">
+<section class="w-full h-full px-6 flex">
   <div class="h-full flex items-center justify-center dashboard-search-bar-wrapper">
     <div id="dashboard-search-bar" class="relative flex h-10 w-full">
       <div class="h-10 w-10 absolute left-2 flex items-center justify-center">
@@ -15,14 +15,14 @@
 
   <div class="h-full flex items-center justify-evenly dashboard-user-panel-wrapper">
     <div *ngFor="let balance of balances" class="w-36 h-10 rounded-2xl bg-gray-dark flex dashboard-balance-box-inner-shadow">
-      <div class="h-full w-10 flex justify-center items-center" [innerHTML]="balance.svg" [style.color]="balance.color">
+      <div class="h-full w-10 flex justify-center items-center" [innerHTML]="balance.svg" [style.color]="'#' + balance.color.toString(16).toUpperCase().padStart(6, '0')">
       </div>
       <div class="flex-1 h-full flex items-center justify-end">
-        <p [style.color]="balance.color" class="pr-4 text-base">{{'$' + balance.balance}}</p>
+        <p [style.color]="'#' + balance.color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{'$' + balance.balance}}</p>
       </div>
     </div>
-    <div class="w-72 h-14 flex items-center justify-evenly bg-gray-dark rounded-3xl">
-      <div class="h-8 w-28 rounded-2xl dashboard-create-button flex items-center justify-center">
+    <div class="w-72 h-14 flex items-center justify-evenly bg-gray-dark rounded-3xl justify-self-end">
+      <div class="h-8 w-28 rounded-2xl dashboard-create-button flex items-center justify-center hover:cursor-pointer">
         <div class="flex-1 flex items-center justify-center">
           <p class="pl-1 font-semibold text-base">Create...</p>
         </div>

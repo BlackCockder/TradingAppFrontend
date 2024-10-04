@@ -11,39 +11,35 @@ import {DataProcessingService} from "../../../../shared/globalServices/DataProce
   styleUrl: './DashboardHeader.component.scss'
 })
 export class DashboardHeaderComponent {
-  private balanceData!: BalanceInterface;
   protected balances!: DisplayBalanceInterface[];
 
   constructor(private dashboardHeaderService: DashboardHeaderService, private authService: AuthService, private dataProcessingService: DataProcessingService) {
   }
 
   ngOnInit(): void {
-    this.balanceData = {
-      balance: 0,
-      escrowBalance: 0,
-      securityBalance: 0
-    };
     this.balances = [
       {
         color: DisplayBalanceColors.BASE,
         svg: this.dataProcessingService.sanitizeSVG(DisplayBalanceSVGs.BASE),
-        balance: this.balanceData.balance
+        balance: 0
       },
       {
         color: DisplayBalanceColors.ESCROW,
         svg: this.dataProcessingService.sanitizeSVG(DisplayBalanceSVGs.ESCROW),
-        balance: this.balanceData.escrowBalance
+        balance: 0
       },
       {
         color: DisplayBalanceColors.SECURITY,
         svg: this.dataProcessingService.sanitizeSVG(DisplayBalanceSVGs.SECURITY),
-        balance: this.balanceData.securityBalance
+        balance: 0
       }
     ];
     if(this.authService.getLoggedInFlag()) {
       this.dashboardHeaderService.fetchBalanceData().subscribe({
         next: (value: BalanceInterface): void => {
-          this.balanceData = value;
+          this.balances[0].balance = value.balance;
+          this.balances[1].balance = value.escrowBalance;
+          this.balances[2].balance = value.securityBalance;
         },
         error: (err: any): void => {
           throw new Error("Failed to fetch balance data:", err);

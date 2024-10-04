@@ -51,11 +51,11 @@ export class AuthService {
   }
 
   public setUsername(user: string): void {
-    sessionStorage.setItem('username', JSON.stringify(user));
+    sessionStorage.setItem('username', user);
   }
 
   public getUserName(): string {
-    return JSON.parse(sessionStorage.getItem('username') ?? '""');
+    return sessionStorage.getItem('username') ?? '""';
   }
 
   public clearUsername(): void {
@@ -67,15 +67,15 @@ export class AuthService {
   }
 
   public getLoggedInFlag(): boolean {
-    return JSON.parse(sessionStorage.getItem('isLoggedInFlag') ?? '""') === 'true';
+    return (sessionStorage.getItem('isLoggedInFlag') ?? '""') === 'true';
   }
 
   public setAuthToken(token: string): void {
-    sessionStorage.setItem("authToken", JSON.stringify(token));
+    sessionStorage.setItem("authToken", token);
   }
 
   public getAuthToken(): string {
-    return JSON.parse(sessionStorage.getItem('authToken') ?? '""');
+    return sessionStorage.getItem('authToken') ?? '""';
   }
 
   public clearAuthToken(): void {
@@ -124,7 +124,7 @@ export class AuthService {
   }
 
   public checkForAuthorisationRequest(req: HttpRequest<any>): boolean {
-    return req.headers.get("X-auth-req") === 'true';
+    return req.headers.get("auth-req") === 'true';
   }
 
   public handleAuthErrors(req: HttpRequest<any>, next: HttpHandlerFn) {

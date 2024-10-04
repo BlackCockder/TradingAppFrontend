@@ -1,7 +1,7 @@
 export enum DisplayBalanceColors {
-  BASE = 'rgba(255, 255, 255, 0.88)',
-  ESCROW = 'rgba(174, 9, 167, 1)',
-  SECURITY = 'rgba(0, 109, 237, 1)'
+  BASE = 0xFFFFFF,
+  ESCROW = 0xAE09A7,
+  SECURITY = 0x006DED
 }
 export enum DisplayBalanceSVGs {
   BASE = `<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
