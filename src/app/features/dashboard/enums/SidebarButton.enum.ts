@@ -9,14 +9,14 @@ export enum SidebarButtonNames {
   SETTINGS = 'Settings'
 }
 export enum SidebarButtonRedirects {
-  MANAGEMENT = 'management',
-  OFFERS = 'offers',
-  SERVICES = 'services',
-  CLIENT_PANEL = 'client-panel',
-  COMPANY = 'company',
-  SOCIAL = 'social',
-  ACCOUNT = 'account',
-  SETTINGS = 'settings'
+  MANAGEMENT = '/management',
+  OFFERS = '/offers',
+  SERVICES = '/services',
+  CLIENT_PANEL = '/client-panel',
+  COMPANY = '/company',
+  SOCIAL = '/social',
+  ACCOUNT = '/account',
+  SETTINGS = '/settings'
 
 }
 export enum SidebarButtonSVGs {

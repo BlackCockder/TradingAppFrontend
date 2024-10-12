@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {SidebarButton} from "./interfaces/SidebarButton.interface";
 import {SidebarButtonNames, SidebarButtonRedirects, SidebarButtonSVGs} from "./enums/SidebarButton.enum";
 import {DataProcessingService} from "../../shared/globalServices/DataProcessing.service";
+import {Router} from "@angular/router";
+import {Location} from "@angular/common";
+import {SubscriptionLike} from "rxjs";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +13,12 @@ import {DataProcessingService} from "../../shared/globalServices/DataProcessing.
 })
 export class DashboardComponent {
   sidebarButtons!: SidebarButton[];
+  locationSubscription!: SubscriptionLike;
 
-  constructor(private dataProcessingService: DataProcessingService) {
+  constructor(private dataProcessingService: DataProcessingService, private router: Router, private location: Location) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sidebarButtons = [
       {
         buttonName: SidebarButtonNames.MANAGEMENT,
@@ -64,7 +68,26 @@ export class DashboardComponent {
         redirectsTo: SidebarButtonRedirects.SETTINGS,
         highlighted: false
       },
-    ]
+    ];
+
+    this.locationSubscription = this.location.subscribe((event): void => {
+      if(event.url && event.url?.replace('/dashboard', '')) {
+        this.sidebarButtons.forEach((button: SidebarButton): void => {
+          button.highlighted = false;
+        });
+        this.sidebarButtons[this.sidebarButtons.findIndex((button: SidebarButton): boolean => button.redirectsTo === event.url?.replace('/dashboard', ''))].highlighted = true;
+      }
+      if((event.url && event.url === '/dashboard')) {
+        this.sidebarButtons.forEach((button: SidebarButton): void => {
+          button.highlighted = false;
+        });
+      }
+    })
+
+    if(this.router.url.replace('/dashboard', '')) {
+      this.sidebarButtons[this.sidebarButtons.findIndex((button: SidebarButton): boolean => button.redirectsTo === this.router.url.replace('/dashboard', ''))].highlighted = true;
+    }
+
   }
 
 
@@ -73,5 +96,10 @@ export class DashboardComponent {
       button.highlighted = false
     });
     this.sidebarButtons[button].highlighted = true;
+  }
+
+  ngOnDestroy(): void {
+    this.locationSubscription.unsubscribe();
+
   }
 }

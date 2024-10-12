@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthService} from "./auth/Auth.service";
+import {StateManagerService} from "./shared/globalServices/StateManager.service";
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,16 @@ import {AuthService} from "./auth/Auth.service";
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private stateManagerService: StateManagerService) {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     //TODO: WYJEBAC POTEM
     if(!this.authService.getLoggedInFlag()) {
       this.authService.loginUser({ identifier: "TestUser2", password: "password2!"}).subscribe({
         next: value => {
-          if(value) {
-          }
+            this.stateManagerService.updateLoggedInSubject(value);
         },
         error: err => {
           console.log(err);

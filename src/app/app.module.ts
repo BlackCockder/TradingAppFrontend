@@ -6,6 +6,8 @@ import {AppConfigModule} from "./app-config.module";
 import {RouterOutlet} from "@angular/router";
 import {DevModule} from "./dev/modules/Dev.module";
 import {FeaturesModule} from "./features/featuresModule/Features.module";
+import {QuillModule} from "ngx-quill";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import {FeaturesModule} from "./features/featuresModule/Features.module";
     AppConfigModule,
     RouterOutlet,
     DevModule,
-    FeaturesModule
+    FeaturesModule,
+    FormsModule,
+    QuillModule.forRoot()
   ],
   exports: [],
   bootstrap: [

@@ -9,6 +9,8 @@ import {OffersComponent} from "../components/offers/offers.component";
 import {ClientPanelComponent} from "../components/client-panel/client-panel.component";
 import {CompanyComponent} from "../components/company/company.component";
 import {DashboardWindowTemplateComponent} from "../templates/dashboardWindow/DashboardWindow.template.component";
+import {QuillEditorComponent} from "ngx-quill";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -26,6 +28,8 @@ import {DashboardWindowTemplateComponent} from "../templates/dashboardWindow/Das
   ],
   imports: [
     CommonModule,
+    QuillEditorComponent,
+    FormsModule,
   ],
   exports: [
     DashboardWindowTemplateComponent

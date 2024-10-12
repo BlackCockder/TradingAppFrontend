@@ -1,12 +1,17 @@
-<div class="flex dashboard-core-change">
-  <div class="dashboard-left-side">
-    <app-dashboard-window-template [inputTitle]="'Overview'"></app-dashboard-window-template>
-    <app-dashboard-window-template [inputTitle]="'Offers'"></app-dashboard-window-template>
-    <app-dashboard-window-template [inputTitle]="'Offers'"></app-dashboard-window-template>
+<app-dashboard-window-template [inputTitle]="'Offer creator'">
+  <div class="flex">
+    <quill-editor
+      [(ngModel)]="offerDescription"
+      [styles]="{ height: '600px' , width: '600px'}"
+      [modules]="{
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{ 'header': [1, 2, 3, false] }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      ['link', 'image']
+    ]
+  }">
+    </quill-editor>
   </div>
-  <div class="dashboard-right-side">
-    <app-dashboard-window-template [inputTitle]="'Offers'"></app-dashboard-window-template>
-    <app-dashboard-window-template [inputTitle]="'Offers'"></app-dashboard-window-template>
-    <app-dashboard-window-template [inputTitle]="'Offers'"></app-dashboard-window-template>
-  </div>
-</div>
+
+</app-dashboard-window-template>

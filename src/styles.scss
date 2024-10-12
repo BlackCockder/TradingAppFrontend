@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-$dashboard-split-breakpoint: 1280px;
+$dashboard-split-breakpoint: 80rem;
 
 html, body {
   background-color: #3B3E41;
@@ -21,10 +21,10 @@ html, body {
   background-color: #131516;
 }
 .op-text-base {
-  opacity: 85%;
+  color: #E3E3E3 !important;
 }
 .op-text-darker {
-  opacity: 60%;
+  color: #8B8B8B !important;
 }
 .w-screen-improved {
   max-width: calc(100vw - (100vw - 100%));
@@ -53,6 +53,20 @@ html, body {
   flex-direction: column;
 }
 p {
-  color: white;
-  opacity: 85%;
+  color: #E3E3E3;
+}
+.bg-darker {
+  background-color: #E3E3E3;
+}
+.bg-violet-gradient {
+  background: linear-gradient( 225deg, rgb(56, 6, 119) 0%, rgb(104, 12, 221) 100%);
+}
+.inset-shadow-base {
+  box-shadow: inset 4px 3px 16px -1px rgb(0, 0, 0);
+}
+.inset-shadow-deeper {
+  box-shadow: inset 0 4px 25px 0 rgb(0, 0, 0);
+}
+.box-shadow-base {
+  box-shadow: 4px 4px 16px 0 rgb(0, 0, 0);
 }
