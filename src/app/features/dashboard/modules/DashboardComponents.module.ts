@@ -11,6 +11,7 @@ import {CompanyComponent} from "../components/company/company.component";
 import {DashboardWindowTemplateComponent} from "../templates/dashboardWindow/DashboardWindow.template.component";
 import {QuillEditorComponent} from "ngx-quill";
 import {FormsModule} from "@angular/forms";
+import {CreatorComponent} from "../components/creator/creator.component";
 
 
 
@@ -24,7 +25,8 @@ import {FormsModule} from "@angular/forms";
     OffersComponent,
     ClientPanelComponent,
     CompanyComponent,
-    DashboardWindowTemplateComponent
+    DashboardWindowTemplateComponent,
+    CreatorComponent
   ],
   imports: [
     CommonModule,

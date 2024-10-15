@@ -39,6 +39,12 @@ export class DashboardComponent {
         highlighted: false
       },
       {
+        buttonName: SidebarButtonNames.CREATOR,
+        svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.CREATOR),
+        redirectsTo: SidebarButtonRedirects.CREATOR,
+        highlighted: false
+      },
+      {
         buttonName: SidebarButtonNames.CLIENT_PANEL,
         svg: this.dataProcessingService.sanitizeSVG(SidebarButtonSVGs.CLIENT_PANEL),
         redirectsTo: SidebarButtonRedirects.CLIENT_PANEL,
@@ -76,6 +82,12 @@ export class DashboardComponent {
           button.highlighted = false;
         });
         this.sidebarButtons[this.sidebarButtons.findIndex((button: SidebarButton): boolean => button.redirectsTo === event.url?.replace('/dashboard', ''))].highlighted = true;
+        const elements: NodeListOf<HTMLElement> = document.querySelectorAll('.needs-force-update');
+        elements.forEach(element => {
+          element.classList.remove('pseudo-force-update');
+          void element.offsetHeight;
+          element.classList.add('pseudo-force-update');
+        });
       }
       if((event.url && event.url === '/dashboard')) {
         this.sidebarButtons.forEach((button: SidebarButton): void => {

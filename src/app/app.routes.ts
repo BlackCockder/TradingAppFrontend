@@ -9,6 +9,7 @@ import {CompanyComponent} from "./features/dashboard/components/company/company.
 import {SocialComponent} from "./features/dashboard/components/social/social.component";
 import {AccountComponent} from "./features/dashboard/components/account/account.component";
 import {SettingsComponent} from "./features/dashboard/components/settings/settings.component";
+import {CreatorComponent} from "./features/dashboard/components/creator/creator.component";
 
 export const routes: Routes = [
 //   {path: 'register', component: RegisterComponent},
@@ -45,6 +46,10 @@ export const routes: Routes = [
       {
         path: 'services',
         component: ServicesComponent
+      },
+      {
+        path: 'creator',
+        component: CreatorComponent
       },
       {
         path: 'client-panel',

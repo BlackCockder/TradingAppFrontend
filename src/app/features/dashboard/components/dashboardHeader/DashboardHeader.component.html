@@ -13,19 +13,36 @@
     </div>
   </div>
 
-  <div class="h-full flex items-center justify-evenly dashboard-user-panel-wrapper">
+  <div class="h-full flex items-center justify-center dashboard-user-panel-wrapper">
     <div class="flex justify-center items-center">
-      <div *ngFor="let balance of balances" class="w-36 h-10 rounded-2xl bg-gray-dark flex dashboard-balance-box-inner-shadow mr-6">
-        <div class="h-full w-10 flex justify-center items-center" [innerHTML]="balance.svg" [style.color]="'#' + balance.color.toString(16).toUpperCase().padStart(6, '0')">
+      <div class="w-36 h-10 rounded-2xl bg-gray-dark flex dashboard-balance-box-inner-shadow">
+        <div class="h-full w-10 flex justify-center items-center" [innerHTML]="balances[0].svg" [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')">
         </div>
         <div class="flex-1 h-full flex items-center justify-end">
-          <p [style.color]="'#' + balance.color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{'$' + balance.balance}}</p>
+          <p [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{'$' + balances[0].balance}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-evenly flex-1">
+      <div class="w-36 h-10 rounded-2xl bg-gray-dark flex dashboard-balance-box-inner-shadow">
+        <div class="h-full w-10 flex justify-center items-center" [innerHTML]="balances[1].svg" [style.color]="'#' + balances[1].color.toString(16).toUpperCase().padStart(6, '0')">
+        </div>
+        <div class="flex-1 h-full flex items-center justify-end">
+          <p [style.color]="'#' + balances[1].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{'$' + balances[1].balance}}</p>
+        </div>
+      </div>
+      <div class="w-36 h-10 rounded-2xl bg-gray-dark flex dashboard-balance-box-inner-shadow">
+        <div class="h-full w-10 flex justify-center items-center" [innerHTML]="balances[2].svg" [style.color]="'#' + balances[2].color.toString(16).toUpperCase().padStart(6, '0')">
+        </div>
+        <div class="flex-1 h-full flex items-center justify-end">
+          <p [style.color]="'#' + balances[2].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{'$' + balances[2].balance}}</p>
         </div>
       </div>
     </div>
 
 
-    <div class="flex justify-end items-center flex-1">
+    <div class="flex justify-end items-center">
       <div class="w-72 h-14 flex items-center justify-evenly bg-gray-dark rounded-3xl justify-self-end">
         <div class="h-8 w-28 rounded-2xl dashboard-create-button flex items-center justify-center hover:cursor-pointer">
           <div class="flex-1 flex items-center justify-center">
@@ -39,12 +56,12 @@
           </div>
 
         </div>
-        <div>
+        <div class="hover:cursor-pointer">
           <svg class="text-white" width="28px" height="28px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 9.5H12M8 13H15M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.1971 3.23374 14.3397 3.65806 15.3845C3.73927 15.5845 3.77988 15.6845 3.798 15.7653C3.81572 15.8443 3.8222 15.9028 3.82221 15.9839C3.82222 16.0667 3.80718 16.1569 3.77711 16.3374L3.18413 19.8952C3.12203 20.2678 3.09098 20.4541 3.14876 20.5888C3.19933 20.7067 3.29328 20.8007 3.41118 20.8512C3.54589 20.909 3.73218 20.878 4.10476 20.8159L7.66265 20.2229C7.84309 20.1928 7.9333 20.1778 8.01613 20.1778C8.09715 20.1778 8.15566 20.1843 8.23472 20.202C8.31554 20.2201 8.41552 20.2607 8.61549 20.3419C9.6603 20.7663 10.8029 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div class="relative">
+        <div class="relative hover:cursor-pointer">
           <svg class="text-white" width="28px" height="28px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.35419 21C10.0593 21.6224 10.9856 22 12 22C13.0145 22 13.9407 21.6224 14.6458 21M18 8C18 6.4087 17.3679 4.88258 16.2427 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.8826 2.63214 7.75738 3.75736C6.63216 4.88258 6.00002 6.4087 6.00002 8C6.00002 11.0902 5.22049 13.206 4.34968 14.6054C3.61515 15.7859 3.24788 16.3761 3.26134 16.5408C3.27626 16.7231 3.31488 16.7926 3.46179 16.9016C3.59448 17 4.19261 17 5.38887 17H18.6112C19.8074 17 20.4056 17 20.5382 16.9016C20.6852 16.7926 20.7238 16.7231 20.7387 16.5408C20.7522 16.3761 20.3849 15.7859 19.6504 14.6054C18.7795 13.206 18 11.0902 18 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

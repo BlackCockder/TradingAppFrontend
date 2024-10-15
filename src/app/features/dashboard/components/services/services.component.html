@@ -1,17 +1,2 @@
-<app-dashboard-window-template [inputTitle]="'Offer creator'">
-  <div class="flex">
-    <quill-editor
-      [(ngModel)]="offerDescription"
-      [styles]="{ height: '600px' , width: '600px'}"
-      [modules]="{
-    toolbar: [
-      ['bold', 'italic', 'underline'],
-      [{ 'header': [1, 2, 3, false] }],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      ['link', 'image']
-    ]
-  }">
-    </quill-editor>
-  </div>
-
+<app-dashboard-window-template [inputTitle]="'Services breakdown'">
 </app-dashboard-window-template>

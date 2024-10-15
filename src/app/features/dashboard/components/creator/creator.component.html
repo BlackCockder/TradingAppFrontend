@@ -1,0 +1,12 @@
+<app-dashboard-window-template [inputTitle]="'Creator'">
+  <form (ngSubmit)="submitCreation()">
+    <input type="file" (change)="onFileSelected($event)" />
+    <button type="submit" class="w-24 h-8 bg-amber-700">Submit now</button>
+  </form>
+  <div class="flex w-full h-96">
+    <quill-editor
+      [(ngModel)]="offerDescription">
+    </quill-editor>
+  </div>
+
+</app-dashboard-window-template>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {serverIP} from "../../../../../main";
+import {AuthService} from "../../../../auth/Auth.service";
 
 @Component({
   selector: 'app-services',
@@ -8,8 +11,14 @@ import { Component } from '@angular/core';
 export class ServicesComponent {
   protected offerDescription!: string;
 
+  constructor(private http: HttpClient, private authService: AuthService) {
+  }
+
   ngOnInit(): void {
     this.offerDescription = '';
+    // this.http.post(`${serverIP}api/category/createCategory`, {categoryName: 'category1', gameName: 'game1'}, {headers: this.authService.authorizationNeeded(), responseType: 'text'}).subscribe(value => {
+    //   console.log(value);
+    // })
   }
 
 }

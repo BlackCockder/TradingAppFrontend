@@ -10,7 +10,7 @@
 
     </div>
     <div class="overflow-auto sidebar-button-wrapper flex-1">
-      <div class="w-full h-20 flex items-center justify-center cursor-pointer relative btn-background-slide"
+      <div class="w-full h-20 flex items-center justify-center cursor-pointer relative btn-background-slide needs-force-update"
            [ngClass]="{'bg-gray-light': button.highlighted,}" [routerLink]="button.redirectsTo.replace('/', '')"
            (click)="buttonClicked(i)"
            *ngFor="let button of sidebarButtons; let i = index">

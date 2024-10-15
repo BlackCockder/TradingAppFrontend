@@ -69,12 +69,14 @@
   transform-origin: right;
 }
 
-.btn-background-slide:hover::before,
-.btn-background-slide:focus::before {
+.btn-background-slide:hover::before {
   transform: scaleX(1);
 }
 
 .btn-background-slide {
   transition: color 200ms ease-in-out;
+  z-index: 1;
+}
+.force-update {
   z-index: 1;
 }
