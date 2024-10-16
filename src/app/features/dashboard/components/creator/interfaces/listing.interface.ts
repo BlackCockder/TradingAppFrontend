@@ -1,6 +1,6 @@
 export interface ListingPayload {
-  title: String,
-  description: String,
+  title: string,
+  description: string,
   quantity: number,
   price: number,
   isForTrade: boolean,
@@ -8,6 +8,6 @@ export interface ListingPayload {
   isNegotiable: boolean,
   isQuickBuy: boolean,
   photosAsMultipart: File[] | null,
-  gameName: String,
-  categoryName: String
+  gameName: string,
+  categoryName: string
 }

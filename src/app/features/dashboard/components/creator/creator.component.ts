@@ -43,17 +43,17 @@ export class CreatorComponent {
       this.listingPayload.description = this.offerDescription;
       this.listingPayload.photosAsMultipart = [this.selectedFile];
       let formDataToSend: FormData = new FormData();
-      formDataToSend.append('title', JSON.stringify(this.listingPayload.title));
-      formDataToSend.append('description', JSON.stringify(this.listingPayload.description));
-      formDataToSend.append('quantity', JSON.stringify( this.listingPayload.quantity));
-      formDataToSend.append('price', JSON.stringify( this.listingPayload.price));
-      formDataToSend.append('isForTrade', JSON.stringify( this.listingPayload.isForTrade));
-      formDataToSend.append('isForSale', JSON.stringify( this.listingPayload.isForSale));
-      formDataToSend.append('isNegotiable', JSON.stringify( this.listingPayload.isNegotiable));
-      formDataToSend.append('isQuickBuy', JSON.stringify( this.listingPayload.isQuickBuy));
-      formDataToSend.append('photosAsMultipart', this.listingPayload.photosAsMultipart[0], this.selectedFile.name);
-      formDataToSend.append('gameName', JSON.stringify(this.listingPayload.gameName));
-      formDataToSend.append('categoryName', JSON.stringify(this.listingPayload.categoryName));
+      formDataToSend.append('title', this.listingPayload.title);
+      formDataToSend.append('description', this.listingPayload.description);
+      formDataToSend.append('quantity', JSON.stringify(this.listingPayload.quantity));
+      formDataToSend.append('price', JSON.stringify(this.listingPayload.price));
+      formDataToSend.append('isForTrade', JSON.stringify(this.listingPayload.isForTrade));
+      formDataToSend.append('isForSale', JSON.stringify(this.listingPayload.isForSale));
+      formDataToSend.append('isNegotiable', JSON.stringify(this.listingPayload.isNegotiable));
+      formDataToSend.append('isQuickBuy', JSON.stringify(this.listingPayload.isQuickBuy));
+      formDataToSend.append('images', this.listingPayload.photosAsMultipart[0], this.selectedFile.name);
+      formDataToSend.append('gameName', this.listingPayload.gameName);
+      formDataToSend.append('categoryName', this.listingPayload.categoryName);
       this.http.post(`${serverIP}api/listings/create`, formDataToSend, {headers: this.authService.authorizationNeeded(), responseType: 'text'}).subscribe(value => {
         console.log(value);
       })
