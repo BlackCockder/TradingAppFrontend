@@ -102,11 +102,11 @@ export class AuthService {
       observe: "response"
     }).pipe(
       map((response: HttpResponse<RefreshResponse>) => {
-        if (response.body != null && "authenticationToken" in response.body &&  typeof response.body.authenticationToken === 'string') {
+        if (response.body != null && "authenticationToken" in response.body && typeof response.body.authenticationToken === 'string') {
           this.setAuthToken(response.body.authenticationToken);
           return response.body.authenticationToken;
         } else {
-          throwError(() => new Error( "Failed to refresh the session"));
+          throwError(() => new Error("Failed to refresh the session"));
           return '';
         }
       }),
@@ -121,10 +121,6 @@ export class AuthService {
       headers: req.headers.set('Authorization',
         'Bearer ' + jwtToken)
     });
-  }
-
-  public checkForAuthorisationRequest(req: HttpRequest<any>): boolean {
-    return req.headers.get("auth-req") === 'true';
   }
 
   public handleAuthErrors(req: HttpRequest<any>, next: HttpHandlerFn) {

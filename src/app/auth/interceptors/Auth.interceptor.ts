@@ -4,12 +4,16 @@ import {AuthService} from "../Auth.service";
 import {catchError} from "rxjs";
 
 export const AuthInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
-  console.log('interceptro triggerred')
   const authService: AuthService = inject(AuthService);
 
-  if (authService.checkForAuthorisationRequest(req)) {
+  if (req.headers.has('auth-req')) {
+    req = req.clone({
+      headers: req.headers.delete('auth-req')
+    })
     if (authService.getAuthToken()) {
       req = authService.addTokenToReq(req, authService.getAuthToken());
+    } else {
+      throw new Error("User is not logged in");
     }
   }
 
