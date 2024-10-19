@@ -7,9 +7,11 @@ import {AuthService} from "../../auth/Auth.service";
 })
 export class StateManagerService {
   private loggedInSubject: BehaviorSubject<boolean>;
+  private firstAccessedRouteSubject: BehaviorSubject<string>;
 
   constructor(private authService: AuthService) {
     this.loggedInSubject = new BehaviorSubject<boolean>(this.authService.getLoggedInFlag());
+    this.firstAccessedRouteSubject = new BehaviorSubject<string>('');
   }
 
   public getLoggedInStateObservable(): Observable<boolean> {
@@ -20,4 +22,11 @@ export class StateManagerService {
     this.loggedInSubject.next(value);
   }
 
+  public saveFirstAccessedRoute(url: string): void {
+    this.firstAccessedRouteSubject.next(url);
+  }
+
+  public getFirstAccessedRoute(): string {
+    return this.firstAccessedRouteSubject.value;
+  }
 }

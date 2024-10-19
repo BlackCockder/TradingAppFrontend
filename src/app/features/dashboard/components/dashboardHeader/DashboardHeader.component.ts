@@ -17,7 +17,10 @@ export class DashboardHeaderComponent {
   protected balances!: DisplayBalanceInterface[];
   private loggedInStateSubscription!: Subscription;
 
-  constructor(private dashboardHeaderService: DashboardHeaderService, private authService: AuthService, private dataProcessingService: DataProcessingService, private stateManagerService: StateManagerService) {
+  constructor(private dashboardHeaderService: DashboardHeaderService,
+              private authService: AuthService,
+              private dataProcessingService: DataProcessingService,
+              private stateManagerService: StateManagerService) {
   }
 
   ngOnInit(): void {
@@ -25,26 +28,27 @@ export class DashboardHeaderComponent {
       {
         color: DisplayBalanceColors.BASE,
         svg: this.dataProcessingService.sanitizeSVG(DisplayBalanceSVGs.BASE),
-        balance: 0
+        balance: "Loading..."
       },
       {
         color: DisplayBalanceColors.ESCROW,
         svg: this.dataProcessingService.sanitizeSVG(DisplayBalanceSVGs.ESCROW),
-        balance: 0
+        balance: "Loading..."
       },
       {
         color: DisplayBalanceColors.SECURITY,
         svg: this.dataProcessingService.sanitizeSVG(DisplayBalanceSVGs.SECURITY),
-        balance: 0
+        balance: "Loading..."
       }
     ];
-    this.loggedInStateSubscription = this.stateManagerService.getLoggedInStateObservable().subscribe(value => {
+    this.loggedInStateSubscription = this.stateManagerService.getLoggedInStateObservable()
+      .subscribe((value: boolean) => {
       if (value) {
         this.dashboardHeaderService.fetchBalanceData().subscribe({
           next: (value: BalanceInterface): void => {
-            this.balances[0].balance = value.balance;
-            this.balances[1].balance = value.escrowBalance;
-            this.balances[2].balance = value.securityBalance;
+            this.balances[0].balance = '$' + value.balance;
+            this.balances[1].balance = '$' + value.escrowBalance;
+            this.balances[2].balance = '$' + value.securityBalance;
           },
           error: (err: any): void => {
             throw new Error("Failed to fetch balance data:", err);

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ListingPayload} from "./interfaces/listing.interface";
 import {FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {serverIP} from "../../../../../main";
+import {SERVER_IP} from "../../../../../main";
 import {AuthService} from "../../../../auth/Auth.service";
 
 @Component({
@@ -54,7 +54,7 @@ export class CreatorComponent {
       formDataToSend.append('images', this.listingPayload.photosAsMultipart[0], this.selectedFile.name);
       formDataToSend.append('gameName', this.listingPayload.gameName);
       formDataToSend.append('categoryName', this.listingPayload.categoryName);
-      this.http.post(`${serverIP}api/listings/create`, formDataToSend, {headers: this.authService.authorizationNeeded(), responseType: 'text'}).subscribe(value => {
+      this.http.post(`${SERVER_IP}api/listings/create`, formDataToSend, {headers: this.authService.authorizationNeeded(), responseType: 'text'}).subscribe(value => {
         console.log(value);
       })
     }

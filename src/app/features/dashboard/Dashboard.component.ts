@@ -5,6 +5,9 @@ import {DataProcessingService} from "../../shared/globalServices/DataProcessing.
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {SubscriptionLike} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {AuthService} from "../../auth/Auth.service";
+import {SERVER_IP} from "../../../main";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +18,11 @@ export class DashboardComponent {
   sidebarButtons!: SidebarButton[];
   locationSubscription!: SubscriptionLike;
 
-  constructor(private dataProcessingService: DataProcessingService, private router: Router, private location: Location) {
+  constructor(private dataProcessingService: DataProcessingService,
+              private router: Router,
+              private location: Location,
+              private http: HttpClient,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -77,41 +84,54 @@ export class DashboardComponent {
     ];
 
     this.locationSubscription = this.location.subscribe((event): void => {
-      if(event.url && event.url?.replace('/dashboard', '')) {
+      if (event.url && event.url?.replace('/dashboard', '')) {
         this.sidebarButtons.forEach((button: SidebarButton): void => {
           button.highlighted = false;
         });
-        this.sidebarButtons[this.sidebarButtons.findIndex((button: SidebarButton): boolean => button.redirectsTo === event.url?.replace('/dashboard', ''))].highlighted = true;
-        const elements: NodeListOf<HTMLElement> = document.querySelectorAll('.needs-force-update');
-        elements.forEach(element => {
-          element.classList.remove('pseudo-force-update');
-          void element.offsetHeight;
-          element.classList.add('pseudo-force-update');
-        });
+        this.sidebarButtons[this.sidebarButtons.findIndex(
+          (button: SidebarButton): boolean => button.redirectsTo === event.url?.replace('/dashboard', ''))]
+          .highlighted = true;
       }
-      if((event.url && event.url === '/dashboard')) {
+      if ((event.url && event.url === '/dashboard')) {
         this.sidebarButtons.forEach((button: SidebarButton): void => {
           button.highlighted = false;
         });
       }
     })
 
-    if(this.router.url.replace('/dashboard', '')) {
-      this.sidebarButtons[this.sidebarButtons.findIndex((button: SidebarButton): boolean => button.redirectsTo === this.router.url.replace('/dashboard', ''))].highlighted = true;
+    if (this.router.url.replace('/dashboard', '')) {
+      this.sidebarButtons[this.sidebarButtons.findIndex(
+        (button: SidebarButton): boolean => button.redirectsTo === this.router.url.replace('/dashboard', ''))]
+        .highlighted = true;
     }
-
   }
 
 
-  buttonClicked(button: number): void {
+  protected buttonClicked(button: number): void {
     this.sidebarButtons.forEach((button: SidebarButton): void => {
       button.highlighted = false
     });
     this.sidebarButtons[button].highlighted = true;
   }
 
+  protected logOutUser(): void {
+    this.http.post(`${SERVER_IP}api/securedAuth/account/logout`, {}, {
+      headers: this.authService.authorizationNeeded(), responseType: 'text'
+    }).subscribe(
+      {
+        next: (response: string): void => {
+          this.authService.logoutUser();
+          console.log(response);
+          this.router.navigate(['']);
+        },
+        error: err => {
+          console.log(err);
+        }
+      }
+    );
+  }
+
   ngOnDestroy(): void {
     this.locationSubscription.unsubscribe();
-
   }
 }

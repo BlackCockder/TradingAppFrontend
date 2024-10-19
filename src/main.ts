@@ -4,4 +4,4 @@ import {AppModule} from "./app/app.module";
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-export const serverIP: string = "http://localhost:8080/";
+export const SERVER_IP: string = "http://localhost:8080/";

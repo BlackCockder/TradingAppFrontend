@@ -10,11 +10,12 @@ import {SocialComponent} from "./features/dashboard/components/social/social.com
 import {AccountComponent} from "./features/dashboard/components/account/account.component";
 import {SettingsComponent} from "./features/dashboard/components/settings/settings.component";
 import {CreatorComponent} from "./features/dashboard/components/creator/creator.component";
+import {dashboardGuard} from "./auth/routeGuards/Dashboard.guard";
 
 export const routes: Routes = [
 //   {path: 'register', component: RegisterComponent},
 //   {path: 'guide', component: SellerGuideComponent},
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: '/dev', pathMatch: 'full'},
 //   {path: 'welcome', component: WelcomeComponent},
 //   {path: 'profiles', component: ProfilesComponent},
 //   {
@@ -34,6 +35,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [dashboardGuard],
     children: [
       {
         path: 'management',

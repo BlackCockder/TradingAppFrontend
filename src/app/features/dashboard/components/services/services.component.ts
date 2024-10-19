@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {serverIP} from "../../../../../main";
+import {SERVER_IP} from "../../../../../main";
 import {AuthService} from "../../../../auth/Auth.service";
 
 @Component({

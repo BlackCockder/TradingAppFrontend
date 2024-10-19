@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, catchError, map, Observable, switchMap, throwError} from "rxjs";
 import {HttpClient, HttpHandlerFn, HttpHeaders, HttpRequest, HttpResponse} from "@angular/common/http";
-import {serverIP} from "../../main";
+import {SERVER_IP} from "../../main";
 import {RefreshUserData} from "./interfaces/RefreshUserData.interface";
 import {RefreshResponse} from "./interfaces/RefreshResponse.interface";
 import {LoginFormPayload} from "./interfaces/LoginFormPayload.interface";
@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   public loginUser(loginFormPayload: LoginFormPayload): Observable<boolean> {
-    return this.http.post<RefreshResponse>(`${serverIP}api/auth/login`, loginFormPayload, {
+    return this.http.post<RefreshResponse>(`${SERVER_IP}api/auth/login`, loginFormPayload, {
       withCredentials: true,
       observe: "response"
     }).pipe(
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   public getUserName(): string {
-    return sessionStorage.getItem('username') ?? '""';
+    return sessionStorage.getItem('username') ?? '';
   }
 
   public clearUsername(): void {
@@ -67,7 +67,7 @@ export class AuthService {
   }
 
   public getLoggedInFlag(): boolean {
-    return (sessionStorage.getItem('isLoggedInFlag') ?? '""') === 'true';
+    return (sessionStorage.getItem('isLoggedInFlag') ?? '') === 'true';
   }
 
   public setAuthToken(token: string): void {
@@ -75,7 +75,7 @@ export class AuthService {
   }
 
   public getAuthToken(): string {
-    return sessionStorage.getItem('authToken') ?? '""';
+    return sessionStorage.getItem('authToken') ?? '';
   }
 
   public clearAuthToken(): void {
@@ -97,7 +97,7 @@ export class AuthService {
       return throwError(() => new Error("Username not found in the sessionStorage"))
     }
 
-    return this.http.post<RefreshResponse>(`${serverIP}api/auth/refresh/token`, userData, {
+    return this.http.post<RefreshResponse>(`${SERVER_IP}api/auth/refresh/token`, userData, {
       withCredentials: true,
       observe: "response"
     }).pipe(
@@ -151,11 +151,11 @@ export class AuthService {
     this.clearUserID();
   }
 
-  private setSessionCloseEvent() {
-    window.addEventListener('unload', () => {
-      this.http.post<any>('http://localhost:8080/api/securedAuth/account/logout', {}, {headers: this.authorizationNeeded()}).subscribe(
+  private setSessionCloseEvent(): void {
+    window.addEventListener('unload', (): void => {
+      this.http.post('http://localhost:8080/api/securedAuth/account/logout', {}, {headers: this.authorizationNeeded()}).subscribe(
         {
-          next: () => {
+          next: (): void => {
             console.log('Session end');
           },
           error: err => {
@@ -164,5 +164,18 @@ export class AuthService {
         }
       );
     });
+  }
+
+  public saveRememberMeCredentials(credentials: LoginFormPayload): void {
+    localStorage.setItem('rememberMe', JSON.stringify(credentials));
+  }
+
+  public getRememberMeCredentials(): LoginFormPayload | null {
+    const data: string | null = localStorage.getItem('rememberMe');
+    return data ? JSON.parse(data) : null;
+  }
+
+  public removeRememberMeCredentials(): void {
+    localStorage.removeItem('rememberMe');
   }
 }

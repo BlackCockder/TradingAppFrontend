@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthService} from "./auth/Auth.service";
-import {StateManagerService} from "./shared/globalServices/StateManager.service";
+import {LoginFormPayload} from "./auth/interfaces/LoginFormPayload.interface";
 
 @Component({
   selector: 'app-root',
@@ -9,20 +9,13 @@ import {StateManagerService} from "./shared/globalServices/StateManager.service"
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService, private stateManagerService: StateManagerService) {
+  constructor(private authService: AuthService) {
 
   }
 
   ngOnInit(): void {
-    //TODO: WYJEBAC POTEM
-    if(!this.authService.getLoggedInFlag()) {
-      this.authService.loginUser({ identifier: "TestUser2", password: "password2!"}).subscribe({
-        next: value => {
-            this.stateManagerService.updateLoggedInSubject(value);
-        },
-        error: err => {
-          console.log(err);
-        }
+    if(this.authService.getRememberMeCredentials()) {
+      this.authService.loginUser(<LoginFormPayload>this.authService.getRememberMeCredentials()).subscribe(() => {
       })
     }
   }
