@@ -1,4 +1,5 @@
 export interface LoginFormPayload {
-  identifier: String,
-  password: String
+  identifier: string,
+  password: string,
+  rememberMe: boolean
 }

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {GlobalErrorHandlerService} from "../shared/globalErrorHandler/GlobalErrorHandler.service";
 import {Subscription} from "rxjs";
+import {AuthService} from "../auth/Auth.service";
 
 @Component({
   selector: 'app-dev',
@@ -11,7 +12,7 @@ export class DevComponent {
   errorSubscription!: Subscription;
   displayError!: string;
 
-  constructor(private globalErrorHandlerService: GlobalErrorHandlerService) {
+  constructor(private globalErrorHandlerService: GlobalErrorHandlerService, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -27,11 +28,14 @@ export class DevComponent {
     throw new Error('niggerrrrrrrrrrrrrrrrrrrrrrrrrr');
   }
 
+  protected login(rememberMe: boolean): void {
+    this.authService.loginUser({identifier: "TestUser2", password: "password2!", rememberMe: rememberMe}).subscribe((value) => {
+      console.log(value);
+    })
+  }
+
   ngOnDestroy() {
     this.errorSubscription.unsubscribe();
   }
 
-  protected autoLogin(enable: boolean): void {
-    enable ? localStorage.setItem('rememberMe', JSON.stringify({ identifier: "TestUser2", password: "password2!"})) : localStorage.removeItem('rememberMe');
-  }
 }

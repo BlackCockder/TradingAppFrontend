@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, catchError, map, Observable, switchMap, throwError} from "rxjs";
-import {HttpClient, HttpHandlerFn, HttpHeaders, HttpRequest, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpHandlerFn, HttpHeaders, HttpRequest, HttpResponse} from "@angular/common/http";
 import {SERVER_IP} from "../../main";
 import {RefreshUserData} from "./interfaces/RefreshUserData.interface";
 import {RefreshResponse} from "./interfaces/RefreshResponse.interface";
@@ -13,7 +13,6 @@ export class AuthService {
   private isTokenRefreshingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
-    this.setLoggedInFlag(this.getLoggedInFlag());
     this.setSessionCloseEvent();
   }
 
@@ -28,6 +27,9 @@ export class AuthService {
           this.setUserID(response.body.id);
           this.setUsername(response.body.username);
           this.setLoggedInFlag(true);
+          if(loginFormPayload.rememberMe) {
+            this.setUsernameToCache(response.body.username);
+          }
           return true;
         }
         return false;
@@ -62,6 +64,18 @@ export class AuthService {
     sessionStorage.removeItem('username');
   }
 
+  public setUsernameToCache(user: string): void {
+    localStorage.setItem('username', user);
+  }
+
+  public getUserNameFromCache(): string {
+    return localStorage.getItem('username') ?? '';
+  }
+
+  public clearUsernameFromCache(): void {
+    localStorage.removeItem('username');
+  }
+
   public setLoggedInFlag(state: boolean): void {
     sessionStorage.setItem('isLoggedInFlag', JSON.stringify(state));
   }
@@ -69,6 +83,7 @@ export class AuthService {
   public getLoggedInFlag(): boolean {
     return (sessionStorage.getItem('isLoggedInFlag') ?? '') === 'true';
   }
+
 
   public setAuthToken(token: string): void {
     sessionStorage.setItem("authToken", token);
@@ -82,56 +97,51 @@ export class AuthService {
     sessionStorage.removeItem('authToken');
   }
 
-  public authorizationNeeded() {
+  public authorizationNeeded(): HttpHeaders {
     return new HttpHeaders({'auth-req': 'true'});
   }
 
-  public refreshSession(): Observable<string> {
+  public refreshSession(fromRememberMe: boolean): Observable<RefreshResponse> {
     let userData: RefreshUserData = {
       username: ''
     };
 
-    if (this.getUserName()) {
-      userData.username = this.getUserName();
-    } else {
-      return throwError(() => new Error("Username not found in the sessionStorage"))
+    if(fromRememberMe) {
+      if (this.getUserNameFromCache()) {
+        userData.username = this.getUserNameFromCache();
+      } else {
+        return throwError(() => new Error("Username not found in the localStorage"))
+      }
+    }
+    else {
+      if (this.getUserName()) {
+        userData.username = this.getUserName();
+      } else {
+        return throwError(() => new Error("Username not found in the sessionStorage"))
+      }
     }
 
     return this.http.post<RefreshResponse>(`${SERVER_IP}api/auth/refresh/token`, userData, {
-      withCredentials: true,
-      observe: "response"
-    }).pipe(
-      map((response: HttpResponse<RefreshResponse>) => {
-        if (response.body != null && "authenticationToken" in response.body && typeof response.body.authenticationToken === 'string') {
-          this.setAuthToken(response.body.authenticationToken);
-          return response.body.authenticationToken;
-        } else {
-          throwError(() => new Error("Failed to refresh the session"));
-          return '';
-        }
-      }),
-      catchError(err => {
-        return throwError(() => new Error("User session ended", err));
-      })
-    );
+      withCredentials: true
+    })
   }
 
-  public addTokenToReq(req: HttpRequest<any>, jwtToken: string) {
+  public addTokenToReq(req: HttpRequest<any>, jwtToken: string): HttpRequest<any> {
     return req.clone({
       headers: req.headers.set('Authorization',
         'Bearer ' + jwtToken)
     });
   }
 
-  public handleAuthErrors(req: HttpRequest<any>, next: HttpHandlerFn) {
+  public handleAuthErrors(req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
     if (!this.isTokenRefreshingSubject.getValue()) {
       this.isTokenRefreshingSubject.next(true);
 
-      return this.refreshSession().pipe(
-        switchMap((refreshTokenResponse: string) => {
+      return this.refreshSession(false).pipe(
+        switchMap((refreshTokenResponse: RefreshResponse) => {
           if (refreshTokenResponse) {
             this.isTokenRefreshingSubject.next(false);
-            return next(this.addTokenToReq(req, refreshTokenResponse));
+            return next(this.addTokenToReq(req, refreshTokenResponse.authenticationToken));
           } else {
             this.isTokenRefreshingSubject.next(false);
             this.logoutUser();
@@ -149,6 +159,7 @@ export class AuthService {
     this.clearAuthToken();
     this.setLoggedInFlag(false);
     this.clearUserID();
+    this.clearUsernameFromCache();
   }
 
   private setSessionCloseEvent(): void {
@@ -166,16 +177,4 @@ export class AuthService {
     });
   }
 
-  public saveRememberMeCredentials(credentials: LoginFormPayload): void {
-    localStorage.setItem('rememberMe', JSON.stringify(credentials));
-  }
-
-  public getRememberMeCredentials(): LoginFormPayload | null {
-    const data: string | null = localStorage.getItem('rememberMe');
-    return data ? JSON.parse(data) : null;
-  }
-
-  public removeRememberMeCredentials(): void {
-    localStorage.removeItem('rememberMe');
-  }
 }
