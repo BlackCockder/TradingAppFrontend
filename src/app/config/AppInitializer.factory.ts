@@ -8,6 +8,7 @@ export function initializeAppFactory(authService: AuthService): () => Promise<an
   return (): Promise<any> => {
     return firstValueFrom(authService.refreshSession(true).pipe(
       tap((response: RefreshResponse): void => {
+        console.log(response);
         authService.setUserID(response.id);
         authService.setAuthToken(response.authenticationToken);
         authService.setUsername(response.username);

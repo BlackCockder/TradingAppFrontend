@@ -13,7 +13,6 @@ export class AuthService {
   private isTokenRefreshingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
-    this.setSessionCloseEvent();
   }
 
   public loginUser(loginFormPayload: LoginFormPayload): Observable<boolean> {
@@ -160,21 +159,6 @@ export class AuthService {
     this.setLoggedInFlag(false);
     this.clearUserID();
     this.clearUsernameFromCache();
-  }
-
-  private setSessionCloseEvent(): void {
-    window.addEventListener('unload', (): void => {
-      this.http.post('http://localhost:8080/api/securedAuth/account/logout', {}, {headers: this.authorizationNeeded()}).subscribe(
-        {
-          next: (): void => {
-            console.log('Session end');
-          },
-          error: err => {
-            console.log(err);
-          }
-        }
-      );
-    });
   }
 
 }
