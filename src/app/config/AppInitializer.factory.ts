@@ -6,12 +6,11 @@ import {HttpErrorResponse} from "@angular/common/http";
 export function initializeAppFactory(authService: AuthService): () => Promise<any> {
 
   return (): Promise<any> => {
-    return firstValueFrom(authService.refreshSession(true).pipe(
+    return firstValueFrom(authService.refreshSession().pipe(
       tap((response: RefreshResponse): void => {
-        console.log(response);
         authService.setUserID(response.id);
         authService.setAuthToken(response.authenticationToken);
-        authService.setUsername(response.username);
+        authService.setUsernameToCache(response.username);
         authService.setLoggedInFlag(true);
       }),
       catchError((error: HttpErrorResponse) => {

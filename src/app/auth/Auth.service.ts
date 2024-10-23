@@ -24,7 +24,7 @@ export class AuthService {
         if (response.body) {
           this.setAuthToken(response.body.authenticationToken);
           this.setUserID(response.body.id);
-          this.setUsername(response.body.username);
+          this.setUsernameToCache(response.body.username);
           this.setLoggedInFlag(true);
           if(loginFormPayload.rememberMe) {
             this.setUsernameToCache(response.body.username);
@@ -49,18 +49,6 @@ export class AuthService {
 
   public clearUserID(): void {
     sessionStorage.removeItem("userid");
-  }
-
-  public setUsername(user: string): void {
-    sessionStorage.setItem('username', user);
-  }
-
-  public getUserName(): string {
-    return sessionStorage.getItem('username') ?? '';
-  }
-
-  public clearUsername(): void {
-    sessionStorage.removeItem('username');
   }
 
   public setUsernameToCache(user: string): void {
@@ -100,24 +88,14 @@ export class AuthService {
     return new HttpHeaders({'auth-req': 'true'});
   }
 
-  public refreshSession(fromRememberMe: boolean): Observable<RefreshResponse> {
+  public refreshSession(): Observable<RefreshResponse> {
     let userData: RefreshUserData = {
       username: ''
     };
-
-    if(fromRememberMe) {
-      if (this.getUserNameFromCache()) {
-        userData.username = this.getUserNameFromCache();
-      } else {
-        return throwError(() => new Error("Username not found in the localStorage"))
-      }
-    }
-    else {
-      if (this.getUserName()) {
-        userData.username = this.getUserName();
-      } else {
-        return throwError(() => new Error("Username not found in the sessionStorage"))
-      }
+    if (this.getUserNameFromCache()) {
+      userData.username = this.getUserNameFromCache();
+    } else {
+      return throwError(() => new Error("Username not found in the localStorage"))
     }
 
     return this.http.post<RefreshResponse>(`${SERVER_IP}api/auth/refresh/token`, userData, {
@@ -136,7 +114,7 @@ export class AuthService {
     if (!this.isTokenRefreshingSubject.getValue()) {
       this.isTokenRefreshingSubject.next(true);
 
-      return this.refreshSession(false).pipe(
+      return this.refreshSession().pipe(
         switchMap((refreshTokenResponse: RefreshResponse) => {
           if (refreshTokenResponse) {
             this.isTokenRefreshingSubject.next(false);
@@ -154,7 +132,6 @@ export class AuthService {
   }
 
   public logoutUser(): void {
-    this.clearUsername();
     this.clearAuthToken();
     this.setLoggedInFlag(false);
     this.clearUserID();
