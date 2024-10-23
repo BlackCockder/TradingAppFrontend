@@ -24,3 +24,26 @@
 .dashboard-create-button-icon-border {
   border-left: 0.125rem solid #131516;
 }
+.dashboard-header-balances-desktop {
+  display: none;
+}
+.dashboard-header-balances-tablets-util {
+  transition: height 200ms;
+}
+.dashboard-header-balances-tablets {
+  display: flex;
+}
+.dashboard-header-balances-tablets-util:hover {
+  height: 7.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@media (min-width: 106rem) {
+  .dashboard-header-balances-desktop {
+    display: flex;
+  }
+  .dashboard-header-balances-tablets {
+    display: none;
+  }
+}

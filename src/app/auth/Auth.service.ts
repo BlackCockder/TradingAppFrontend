@@ -11,8 +11,12 @@ import {LoginFormPayload} from "./interfaces/LoginFormPayload.interface";
 })
 export class AuthService {
   private isTokenRefreshingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private logoutTimeout: any;
+  private sessionRefreshInterval: number = 15 * 60 * 1000;
+  private logoutWarningTime: number = this.sessionRefreshInterval - 30 * 1000;
 
   constructor(private http: HttpClient) {
+    window.addEventListener('storage', (event) => this.onLocalStorageChange(event));
   }
 
   public loginUser(loginFormPayload: LoginFormPayload): Observable<boolean> {
@@ -89,6 +93,8 @@ export class AuthService {
   }
 
   public refreshSession(): Observable<RefreshResponse> {
+    this.resetLogoutTimer();
+    this.updateResetTimerInOtherTabs();
     let userData: RefreshUserData = {
       username: ''
     };
@@ -131,11 +137,38 @@ export class AuthService {
     }
   }
 
+  public logoutAPICall(): Observable<string> {
+    return this.http.post(`${SERVER_IP}api/securedAuth/account/logout`, {}, {
+      headers: this.authorizationNeeded(), responseType: 'text'
+    });
+  }
+
   public logoutUser(): void {
+    this.logoutAPICall();
     this.clearAuthToken();
     this.setLoggedInFlag(false);
     this.clearUserID();
     this.clearUsernameFromCache();
+
   }
 
+  private updateResetTimerInOtherTabs(): void {
+    localStorage.setItem('sessionRefresh', new Date().getTime().toString());
+  }
+
+  private resetLogoutTimer(): void {
+    if (this.logoutTimeout) {
+      clearTimeout(this.logoutTimeout);
+    }
+
+    this.logoutTimeout = setTimeout(() => {
+      this.logoutUser();
+    }, this.logoutWarningTime);
+  }
+
+  private onLocalStorageChange(event: StorageEvent): void {
+    if (event.key === 'sessionRefresh') {
+      this.resetLogoutTimer();
+    }
+  }
 }
