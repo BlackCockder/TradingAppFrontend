@@ -48,7 +48,7 @@
             <p [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{balances[0].balance}}</p>
           </div>
           <div class="h-full w-10 pr-1 flex items-center justify-center">
-            <svg [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="hover:cursor-pointer" (click)="toggleBalancesVisibility()">
               <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>

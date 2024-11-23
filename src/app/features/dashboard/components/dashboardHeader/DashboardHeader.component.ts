@@ -15,6 +15,9 @@ import {ActivatedRoute} from "@angular/router";
 export class DashboardHeaderComponent {
   protected balances!: DisplayBalanceInterface[];
   private balanceData!: BalanceInterface;
+  private balancesToggleStatus!: boolean;
+  private isToggling!: boolean;
+  private balancesToggleAnimationLength: number = 300;
 
   constructor(private dashboardHeaderService: DashboardHeaderService,
               private authService: AuthService,
@@ -41,6 +44,21 @@ export class DashboardHeaderComponent {
         balance: '$' + this.balanceData.securityBalance
       }
     ];
+    this.isToggling = false;
+    this.balancesToggleStatus = false;
+  }
+
+  //TODO: Finish the toggleable button
+  protected toggleBalancesVisibility(): void {
+    if (this.isToggling) {
+      return;
+    }
+    this.isToggling = true;
+    this.balancesToggleStatus = !this.balancesToggleStatus;
+
+    setTimeout(() => {
+      this.isToggling = false;
+    }, this.balancesToggleAnimationLength);
   }
 
 }
