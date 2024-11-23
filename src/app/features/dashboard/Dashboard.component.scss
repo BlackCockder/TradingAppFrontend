@@ -95,3 +95,20 @@
 .logout-btn-transform:hover .logout-target {
   color: #b60909;
 }
+
+.logout-btn-absolute-version {
+  display: flex;
+}
+
+.logout-btn-block-version {
+  display: none;
+}
+
+@media (max-height: 55.5rem) {
+  .logout-btn-absolute-version {
+    display: none;
+  }
+  .logout-btn-block-version {
+    display: flex;
+  }
+}
