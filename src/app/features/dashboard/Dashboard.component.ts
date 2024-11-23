@@ -2,9 +2,8 @@ import {Component} from '@angular/core';
 import {SidebarButton} from "./interfaces/SidebarButton.interface";
 import {SidebarButtonNames, SidebarButtonRedirects, SidebarButtonSVGs} from "./enums/SidebarButton.enum";
 import {DataProcessingService} from "../../shared/globalServices/DataProcessing.service";
-import {Router} from "@angular/router";
-import {Location} from "@angular/common";
-import {SubscriptionLike} from "rxjs";
+import {NavigationEnd, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../../auth/Auth.service";
 import {SERVER_IP} from "../../../main";
@@ -16,11 +15,10 @@ import {SERVER_IP} from "../../../main";
 })
 export class DashboardComponent {
   sidebarButtons!: SidebarButton[];
-  locationSubscription!: SubscriptionLike;
+  private routeSubscription!: Subscription;
 
   constructor(private dataProcessingService: DataProcessingService,
               private router: Router,
-              private location: Location,
               private http: HttpClient,
               private authService: AuthService) {
   }
@@ -83,21 +81,25 @@ export class DashboardComponent {
       },
     ];
 
-    this.locationSubscription = this.location.subscribe((event): void => {
-      if (event.url && event.url?.replace('/dashboard', '')) {
-        this.sidebarButtons.forEach((button: SidebarButton): void => {
-          button.highlighted = false;
-        });
-        this.sidebarButtons[this.sidebarButtons.findIndex(
-          (button: SidebarButton): boolean => button.redirectsTo === event.url?.replace('/dashboard', ''))]
-          .highlighted = true;
-      }
-      if ((event.url && event.url === '/dashboard')) {
-        this.sidebarButtons.forEach((button: SidebarButton): void => {
-          button.highlighted = false;
-        });
+    this.routeSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log(event.url)
+        if (event.url.replace('/dashboard', '')) {
+          this.sidebarButtons.forEach((button: SidebarButton): void => {
+            button.highlighted = false;
+          });
+          this.sidebarButtons[this.sidebarButtons.findIndex(
+            (button: SidebarButton): boolean => button.redirectsTo === event.url.replace('/dashboard', ''))]
+            .highlighted = true;
+        }
+        if ((event.url === '/dashboard')) {
+          this.sidebarButtons.forEach((button: SidebarButton): void => {
+            button.highlighted = false;
+          });
+        }
       }
     })
+
 
     if (this.router.url.replace('/dashboard', '')) {
       this.sidebarButtons[this.sidebarButtons.findIndex(
@@ -132,6 +134,6 @@ export class DashboardComponent {
   }
 
   ngOnDestroy(): void {
-    this.locationSubscription.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
 }
