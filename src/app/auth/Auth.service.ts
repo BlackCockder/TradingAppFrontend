@@ -5,6 +5,7 @@ import {SERVER_IP} from "../../main";
 import {RefreshUserData} from "./interfaces/RefreshUserData.interface";
 import {RefreshResponse} from "./interfaces/RefreshResponse.interface";
 import {LoginFormPayload} from "./interfaces/LoginFormPayload.interface";
+import {StateManagerService} from "../shared/globalServices/StateManager.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class AuthService {
   private sessionRefreshInterval: number = 15 * 60 * 1000;
   private logoutWarningTime: number = this.sessionRefreshInterval - 30 * 1000;
 
-  constructor(private http: HttpClient) {
-    window.addEventListener('storage', (event) => this.onLocalStorageChange(event));
+  constructor(private http: HttpClient, private stateManagerService: StateManagerService) {
+    window.addEventListener('storage', (event: StorageEvent) => this.onLocalStorageChange(event));
   }
 
   public loginUser(loginFormPayload: LoginFormPayload): Observable<boolean> {
@@ -68,6 +69,7 @@ export class AuthService {
   }
 
   public setLoggedInFlag(state: boolean): void {
+    this.stateManagerService.updateLoggedInSubject(state);
     sessionStorage.setItem('isLoggedInFlag', JSON.stringify(state));
   }
 
@@ -146,9 +148,9 @@ export class AuthService {
   public logoutUser(): void {
     this.logoutAPICall();
     this.clearAuthToken();
-    this.setLoggedInFlag(false);
     this.clearUserID();
     this.clearUsernameFromCache();
+    this.setLoggedInFlag(false);
 
   }
 
@@ -161,7 +163,7 @@ export class AuthService {
       clearTimeout(this.logoutTimeout);
     }
 
-    this.logoutTimeout = setTimeout(() => {
+    this.logoutTimeout = setTimeout((): void => {
       this.logoutUser();
     }, this.logoutWarningTime);
   }

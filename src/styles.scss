@@ -3,32 +3,44 @@
 @import "tailwindcss/utilities";
 
 $dashboard-split-breakpoint: 80rem;
-
-html, body {
-  background-color: #3B3E41;
-  min-height: 100%;
-  width: calc(100vw - (100vw - 100%));
-  max-width: calc(100vw - (100vw - 100%));
-  display: flex;
+$background-color-light: #3B3E41;
+$background-color-medium: #1E2124;
+$background-color-dark: #131516;
+$white-color-default: #E3E3E3;
+/*
+Jak cos sie zjebie z szerokoscia znowu to to jest w teorii lepsze niz "width: 100%":
+width: calc(100vw - (100vw - 100%));
+*/
+html {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
 }
-.bg-gray-med {
-  background-color: #1E2124;
+body {
+  margin: 0;
+  background-color: $background-color-light;
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .bg-gray-light {
-  background-color: #3B3E41;
+  background-color: $background-color-light;
+}
+.bg-gray-med {
+  background-color: $background-color-medium;
 }
 .bg-gray-dark {
-  background-color: #131516;
+  background-color: $background-color-dark;
 }
-.op-text-base {
+.text-color-base {
   color: #E3E3E3 !important;
 }
-.op-text-darker {
+.color-text-darker {
   color: #8B8B8B !important;
 }
-.w-screen-improved {
-  max-width: calc(100vw - (100vw - 100%));
-}
+/* TODO: Change when dashboard desing will be readier. It cannot be in the main file */
+/* From here: */
 .dashboard-left-side{
   width: 100%;
 }
@@ -52,21 +64,22 @@ html, body {
 .dashboard-core-change {
   flex-direction: column;
 }
+/* To here */
 p {
-  color: #E3E3E3;
+  color: $white-color-default;
 }
-.bg-darker {
-  background-color: #E3E3E3;
+.bg-white {
+  background-color: $white-color-default;
 }
 .bg-violet-gradient {
   background: linear-gradient( 225deg, rgb(56, 6, 119) 0%, rgb(104, 12, 221) 100%);
 }
-.inset-shadow-base {
+.inside-shadow-base {
   box-shadow: inset 4px 3px 16px -1px rgb(0, 0, 0);
 }
-.inset-shadow-deeper {
+.inside-shadow-darker {
   box-shadow: inset 0 4px 25px 0 rgb(0, 0, 0);
 }
-.box-shadow-base {
+.outside-shadow-base {
   box-shadow: 4px 4px 16px 0 rgb(0, 0, 0);
 }

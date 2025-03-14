@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {AuthService} from "./auth/Auth.service";
 
 @Component({
   selector: 'app-root',
@@ -8,14 +7,15 @@ import {AuthService} from "./auth/Auth.service";
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService) {
+  protected navbarDisabledUrlList: String[] = [
+    "dashboard"
+  ];
 
+  constructor() {
   }
 
   ngOnInit(): void {
-    // if(this.authService.getRememberMeCredentials()) {
-    //   this.authService.loginUser(<LoginFormPayload>this.authService.getRememberMeCredentials()).subscribe(() => {
-    //   })
-    // }
+
   }
+
 }
