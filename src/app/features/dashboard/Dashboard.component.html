@@ -1,66 +1,58 @@
-<section id="DASHBOARD-SECTION-1" class="flex items-stretch">
-  <div id="DASHBOARD-DIV-1-1" class="h-screen hidden md:w-40 md:flex flex-col bg-gray-med"></div>
-  <section id="DASHBOARD-SECTION-1-2" class="h-screen hidden md:w-40 md:flex md:fixed md:top-0 md:left-0 flex-col bg-gray-med">
-    <div id="DASHBOARD-DIV-1-2-1" class="w-full h-dashboard-sidebar-logo flex justify-center items-center">
+<section id="Dashboard-Section-1" class="flex items-stretch">
+  <div id="Dashboard-Div-1-1" class="h-screen hidden md:w-40 md:flex flex-col bg-gray-med"></div>
+  <section id="Dashboard-Section-1-2" class="h-screen hidden md:w-40 md:flex md:fixed md:top-0 md:left-0 flex-col bg-gray-med">
+    <div id="Dashboard-Div-1-2-1" class="w-full h-dashboard-sidebar-logo flex justify-center items-center">
       <img
-        id="DASHBOARD-IMG-1-2-1-1"
+        id="Dashboard-Img-1-2-1-1"
         ngSrc="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-6/424961343_1716264755530257_7124981281078062877_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=oByZBX5W0HcQ7kNvgFxfsPG&_nc_oc=Adgn4IWRGMFDwhDlaUJz3qBdo1BGbROWaQak9LDskQBVA7UsVuysFACm0gQho8M5YeM&_nc_zt=23&_nc_ht=scontent-waw2-2.xx&_nc_gid=W75GfqCadHeN0cmAHv2_eA&oh=00_AYG2dOhSmhf01xr1WV0M3fq_LiOkyKGaRjKelkpAtnH-2g&oe=67DA8516"
         width="40"
         height="40"
         class="sidebar-img-round hover:cursor-pointer" alt="TradingApp Logo"
         routerLink="/dashboard">
-      <p id="DASHBOARD-P-1-2-1-2" class="font-semibold text-base text-white text-color-base pl-2 hover:cursor-pointer" routerLink="/dashboard">Dashboard</p>
-
+      <p id="Dashboard-P-1-2-1-2" class="font-semibold text-base text-white text-color-base pl-2 hover:cursor-pointer" routerLink="/dashboard">Dashboard</p>
     </div>
-    <div id="DASHBOARD-DIV-1-2-2" class="overflow-auto sidebar-button-wrapper flex-1">
-      <div id="DASHBOARD-DIV-1-2-2_1_FOR_{{i}}" class="w-full h-20 flex items-center justify-center cursor-pointer relative btn-background-slide"
+    <div id="Dashboard-Div-1-2-2" class="overflow-auto sidebar-button-wrapper flex-1">
+      <div id="Dashboard-Div-1-2-2-1For{{i}}" class="w-full h-20 flex items-center justify-center cursor-pointer relative btn-background-slide"
            [ngClass]="{'bg-gray-light': button.highlighted,}" [routerLink]="button.redirectsTo.replace('/', '')"
            (click)="buttonClicked(i)"
            *ngFor="let button of sidebarButtons; let i = index">
-        <div id="DASHBOARD-DIV-1-2-2-1-FOR_{{i}}-1_IF_TRUE" *ngIf="button.highlighted" class="absolute top-0 left-0 h-full w-1 sidebar-button-highlighter">
-
-        </div>
-        <div id="DASHBOARD-DIV-1-2-2-1_FOR_{{i}}-2">
-          <div id="DASHBOARD-DIV-1-2-2-1_FOR_{{i}}-2-1" class="w-full h-6 text-white color-text-darker"
+        <div id="Dashboard-Div-1-2-2-1For{{i}}-1IfTrue" *ngIf="button.highlighted" class="absolute top-0 left-0 h-full w-1 sidebar-button-highlighter"></div>
+        <div id="Dashboard-Div-1-2-2-1For{{i}}-2">
+          <div id="Dashboard-Div-1-2-2-1For{{i}}-2-1" class="w-full h-6 text-white color-text-darker"
                [ngClass]="{'op-text-base': button.highlighted, 'op-text-darker': !button.highlighted,}"
-               [innerHTML]="button.svg">
-
-          </div>
-          <p id="DASHBOARD-P-1-2-2-1_FOR_{{i}}-2-2" class="text-white text-base"
+               [innerHTML]="button.svg"></div>
+          <p id="Dashboard-P-1-2-2-1For{{i}}-2-2" class="text-white text-base"
              [ngClass]="{'op-text-base': button.highlighted, 'op-text-darker': !button.highlighted,}">{{ button.buttonName }}</p>
         </div>
-
       </div>
-      <div id="DASHBOARD-DIV-1-2-2-2" class="logout-btn-block-version w-full h-20 flex items-center justify-center">
-        <div id="DASHBOARD-DIV-1-2-2-2-1" class="flex items-center justify-center hover:cursor-pointer logout-btn-transform" (click)="logOutUser()">
-          <svg id="DASHBOARD-SVG-1-2-2-2-1-1" class="text-red-900 logout-target" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path id="DASHBOARD-PATH-1-2-2-2-1-1-1" d="M12 8L16 12M16 12L12 16M16 12H3M3.33782 7C5.06687 4.01099 8.29859 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.29859 22 5.06687 19.989 3.33782 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <div id="Dashboard-Div-1-2-2-2" class="logout-btn-block-version w-full h-20 flex items-center justify-center">
+        <div id="Dashboard-Div-1-2-2-2-1" class="flex items-center justify-center hover:cursor-pointer logout-btn-transform" (click)="logOutUser()">
+          <svg id="Dashboard-Svg-1-2-2-2-1-1" class="text-red-900 logout-target" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="Dashboard-Path-1-2-2-2-1-1-1" d="M12 8L16 12M16 12L12 16M16 12H3M3.33782 7C5.06687 4.01099 8.29859 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.29859 22 5.06687 19.989 3.33782 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <p id="DASHBOARD-P-1-2-2-2-1-2" class="text-red-900 ml-2 logout-target">Log out</p>
+          <p id="Dashboard-P-1-2-2-2-1-2" class="text-red-900 ml-2 logout-target">Log out</p>
         </div>
       </div>
     </div>
-    <div id="DASHBOARD-DIV-1-2-3" class="logout-btn-absolute-version w-full h-20 bottom-0 left-0 flex items-center justify-center">
-      <div id="DASHBOARD-DIV-1-2-3-1" class="flex items-center justify-center hover:cursor-pointer logout-btn-transform" (click)="logOutUser()">
-        <svg id="DASHBOARD-SVG-1-2-3-1-1" class="text-red-900 logout-target" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id="DASHBOARD-PATH-1-2-3-1-1-1" d="M12 8L16 12M16 12L12 16M16 12H3M3.33782 7C5.06687 4.01099 8.29859 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.29859 22 5.06687 19.989 3.33782 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <div id="Dashboard-Div-1-2-3" class="logout-btn-absolute-version w-full h-20 bottom-0 left-0 flex items-center justify-center">
+      <div id="Dashboard-Div-1-2-3-1" class="flex items-center justify-center hover:cursor-pointer logout-btn-transform" (click)="logOutUser()">
+        <svg id="Dashboard-Svg-1-2-3-1-1" class="text-red-900 logout-target" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="Dashboard-Path-1-2-3-1-1-1" d="M12 8L16 12M16 12L12 16M16 12H3M3.33782 7C5.06687 4.01099 8.29859 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.29859 22 5.06687 19.989 3.33782 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <p id="DASHBOARD-P-1-2-3-1-2" class="text-red-900 ml-2 logout-target">Log out</p>
+        <p id="Dashboard-P-1-2-3-1-2" class="text-red-900 ml-2 logout-target">Log out</p>
       </div>
     </div>
   </section>
-  <section id="DASHBOARD-SECTION-1-3" class="flex flex-col flex-1">
-    <section id="DASHBOARD-SECTION-1-3-1"
-             class="w-full h-dashboard-header">
+  <section id="Dashboard-Section-1-3" class="flex flex-col flex-1">
+    <section id="Dashboard-Section-1-3-1" class="w-full h-dashboard-header">
       <app-dashboard-header></app-dashboard-header>
     </section>
-    <section id="DASHBOARD-SECTION-1-3-2" class="w-full h-dashboard-content flex-1">
-      <div id="DASHBOARD-DIV-1-3-2-1" class="px-6 dashboard-core-wrapper-main">
+    <section id="Dashboard-Section-1-3-2" class="w-full h-dashboard-content flex-1">
+      <div id="Dashboard-Div-1-3-2-1" class="px-6 dashboard-core-wrapper-main">
         <router-outlet>
           <ng-content></ng-content>
         </router-outlet>
       </div>
     </section>
   </section>
-
 </section>

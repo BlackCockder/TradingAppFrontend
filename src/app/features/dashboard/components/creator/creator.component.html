@@ -1,10 +1,10 @@
-<app-dashboard-window-template id="CREATOR-DASHBOARD_WINDOW_TEMPLATE-1" [inputTitle]="'Creator'">
-  <form id="CREATOR-FORM-1-1" (ngSubmit)="submitCreation()">
-    <input id="CREATOR-INPUT-1-1-1" type="file" (change)="onFileSelected($event)" />
-    <button id="CREATOR-BUTTON-1-1-2" type="submit" class="w-24 h-8 bg-amber-700">Submit now</button>
+<app-dashboard-window-template id="Creator-DashboardWindowTemplate-1" [inputTitle]="'Creator'">
+  <form id="Creator-Form-1-1" (ngSubmit)="submitCreation()">
+    <input id="Creator-Input-1-1-1" type="file" (change)="onFileSelected($event)" />
+    <button id="Creator-Button-1-1-2" type="submit" class="w-24 h-8 bg-amber-700">Submit now</button>
   </form>
-  <div id="CREATOR-DIV-1-2" class="flex w-full h-96">
-    <quill-editor id="CREATOR-QUILL_EDITOR-1-2-1"
+  <div id="Creator-Div-1-2" class="flex w-full h-96">
+    <quill-editor id="Creator-QuillEditor-1-2-1"
       [(ngModel)]="offerDescription">
     </quill-editor>
   </div>
