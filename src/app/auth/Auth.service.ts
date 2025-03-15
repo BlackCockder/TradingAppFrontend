@@ -5,8 +5,6 @@ import {SERVER_IP} from "../../main";
 import {RefreshUserData} from "./interfaces/RefreshUserData.interface";
 import {RefreshResponse} from "./interfaces/RefreshResponse.interface";
 import {LoginFormPayload} from "./interfaces/LoginFormPayload.interface";
-import {StateManagerService} from "../shared/globalServices/StateManager.service";
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +14,7 @@ export class AuthService {
   private sessionRefreshInterval: number = 15 * 60 * 1000;
   private logoutWarningTime: number = this.sessionRefreshInterval - 30 * 1000;
 
-  constructor(private http: HttpClient, private stateManagerService: StateManagerService) {
+  constructor(private http: HttpClient) {
     window.addEventListener('storage', (event: StorageEvent) => this.onLocalStorageChange(event));
   }
 
@@ -69,7 +67,6 @@ export class AuthService {
   }
 
   public setLoggedInFlag(state: boolean): void {
-    this.stateManagerService.updateLoggedInSubject(state);
     sessionStorage.setItem('isLoggedInFlag', JSON.stringify(state));
   }
 

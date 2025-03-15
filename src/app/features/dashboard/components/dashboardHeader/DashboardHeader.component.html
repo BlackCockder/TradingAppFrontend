@@ -1,99 +1,94 @@
-<section class="w-full h-full px-6 flex">
-  <div class="h-full flex items-center justify-center dashboard-search-bar-wrapper">
-    <div id="dashboard-search-bar" class="relative flex h-10 w-full">
-      <div class="h-10 w-10 absolute left-2 flex items-center justify-center">
-        <svg class="w-6 h-6 text-white color-text-darker" width="100%" height="100%" viewBox="0 0 24 24" fill="none"
+<section id="DASHBOARD_HEADER-SECTION-1" class="w-full h-full px-6 flex">
+  <div id="DASHBOARD_HEADER-DIV-1-1" class="h-full flex items-center justify-center dashboard-search-bar-wrapper">
+    <div id="DASHBOARD_HEADER-DIV-1-1-1" class="relative flex h-10 w-full">
+      <div id="DASHBOARD_HEADER-DIV-1-1-1-1" class="h-10 w-10 absolute left-2 flex items-center justify-center">
+        <svg id="DASHBOARD_HEADER-SVG-1-1-1-1-1" class="w-6 h-6 text-white color-text-darker" width="100%" height="100%" viewBox="0 0 24 24" fill="none"
              xmlns="http://www.w3.org/2000/svg">
           <path
+            id="DASHBOARD_HEADER-PATH-1-1-1-1-1-1"
             d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <input type="text" class="dashboard-search-bar-input bg-gray-dark h-full flex-1 placeholder-opacity-60 text-white outline-none" placeholder="Search...">
+      <input id="DASHBOARD_HEADER-INPUT-1-1-1-2" type="text" class="dashboard-search-bar-input bg-gray-dark h-full flex-1 placeholder-opacity-60 text-white outline-none" placeholder="Search...">
     </div>
   </div>
 
-  <div class="h-full flex items-center justify-center dashboard-user-panel-wrapper ">
-    <div class="justify-center items-center dashboard-header-balances-desktop">
-      <div class="w-36 h-10 rounded-2xl bg-gray-dark flex">
-        <div class="h-full w-10 flex justify-center items-center" [innerHTML]="balances[0].svg" [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')">
+  <div id="DASHBOARD_HEADER-DIV-1-2" class="h-full flex items-center justify-center dashboard-user-panel-wrapper ">
+    <div id="DASHBOARD_HEADER-DIV-1-2-1" class="justify-center items-center dashboard-header-balances-desktop">
+      <div id="DASHBOARD_HEADER-DIV-1-2-1-1" class="w-36 h-10 rounded-2xl bg-gray-dark flex">
+        <div id="DASHBOARD_HEADER-DIV-1-2-1-1-1" class="h-full w-10 flex justify-center items-center" [innerHTML]="balances[0].svg" [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')">
         </div>
-        <div class="flex-1 h-full flex items-center justify-end">
-          <p [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{balances[0].balance}}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="items-center justify-evenly flex-1 dashboard-header-balances-desktop">
-      <div class="w-36 h-10 rounded-2xl bg-gray-dark flex">
-        <div class="h-full w-10 flex justify-center items-center" [innerHTML]="balances[1].svg" [style.color]="'#' + balances[1].color.toString(16).toUpperCase().padStart(6, '0')">
-        </div>
-        <div class="flex-1 h-full flex items-center justify-end">
-          <p [style.color]="'#' + balances[1].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{balances[1].balance}}</p>
-        </div>
-      </div>
-      <div class="w-36 h-10 rounded-2xl bg-gray-dark flex">
-        <div class="h-full w-10 flex justify-center items-center" [innerHTML]="balances[2].svg" [style.color]="'#' + balances[2].color.toString(16).toUpperCase().padStart(6, '0')">
-        </div>
-        <div class="flex-1 h-full flex items-center justify-end">
-          <p [style.color]="'#' + balances[2].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{balances[2].balance}}</p>
+        <div id="DASHBOARD_HEADER-DIV-1-2-1-1-2" class="flex-1 h-full flex items-center justify-end">
+          <p id="DASHBOARD_HEADER-P-1-2-1-1-2-1" [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{balances[0].balance}}</p>
         </div>
       </div>
     </div>
 
-    <div class="flex items-center justify-center flex-auto dashboard-header-balances-tablets">
-      <div class="w-36 h-10 flex items-center justify-center relative">
-        <div class="w-full h-full rounded-2xl bg-gray-dark flex dashboard-header-balances-tablets-util">
-          <div class="flex-1 h-full flex items-center justify-end">
-            <p [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{balances[0].balance}}</p>
+    <div id="DASHBOARD_HEADER-DIV-1-2-2" class="items-center justify-evenly flex-1 dashboard-header-balances-desktop">
+      <div id="DASHBOARD_HEADER-DIV-1-2-2-1" class="w-36 h-10 rounded-2xl bg-gray-dark flex">
+        <div id="DASHBOARD_HEADER-DIV-1-2-2-1-1" class="h-full w-10 flex justify-center items-center" [innerHTML]="balances[1].svg" [style.color]="'#' + balances[1].color.toString(16).toUpperCase().padStart(6, '0')">
+        </div>
+        <div id="DASHBOARD_HEADER-DIV-1-2-2-1-2" class="flex-1 h-full flex items-center justify-end">
+          <p id="DASHBOARD_HEADER-P-1-2-2-1-2-1" [style.color]="'#' + balances[1].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{balances[1].balance}}</p>
+        </div>
+      </div>
+      <div id="DASHBOARD_HEADER-DIV-1-2-2-2" class="w-36 h-10 rounded-2xl bg-gray-dark flex">
+        <div id="DASHBOARD_HEADER-DIV-1-2-2-2-1" class="h-full w-10 flex justify-center items-center" [innerHTML]="balances[2].svg" [style.color]="'#' + balances[2].color.toString(16).toUpperCase().padStart(6, '0')">
+        </div>
+        <div id="DASHBOARD_HEADER-DIV-1-2-2-2-2" class="flex-1 h-full flex items-center justify-end">
+          <p id="DASHBOARD_HEADER-P-1-2-2-2-2-1" [style.color]="'#' + balances[2].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{balances[2].balance}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="DASHBOARD_HEADER-DIV-1-2-3" class="flex items-center justify-center flex-auto dashboard-header-balances-tablets">
+      <div id="DASHBOARD_HEADER-DIV-1-2-3-1" class="w-36 h-10 flex items-center justify-center relative">
+        <div id="DASHBOARD_HEADER-DIV-1-2-3-1-1" class="w-full h-full rounded-2xl bg-gray-dark flex dashboard-header-balances-tablets-util">
+          <div id="DASHBOARD_HEADER-DIV-1-2-3-1-1-1" class="flex-1 h-full flex items-center justify-end">
+            <p id="DASHBOARD_HEADER-P-1-2-3-1-1-1-1" [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" class="pr-4 text-base">{{balances[0].balance}}</p>
           </div>
-          <div class="h-full w-10 pr-1 flex items-center justify-center">
-            <svg [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="hover:cursor-pointer" (click)="toggleBalancesVisibility()">
-              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <div id="DASHBOARD_HEADER-DIV-1-2-3-1-1-2" class="h-full w-10 pr-1 flex items-center justify-center">
+            <svg id="DASHBOARD_HEADER-SVG-1-2-3-1-1-2-1" [style.color]="'#' + balances[0].color.toString(16).toUpperCase().padStart(6, '0')" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="hover:cursor-pointer" (click)="toggleBalancesVisibility()">
+              <path id="DASHBOARD_HEADER-PATH-1-2-3-1-1-2-1-1" d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
         </div>
       </div>
-
-
     </div>
 
-
-    <div class="flex justify-end items-center">
-      <div class="w-72 h-14 flex items-center justify-evenly bg-gray-dark rounded-3xl justify-self-end">
-        <div class="h-8 w-28 rounded-2xl dashboard-create-button flex items-center justify-center hover:cursor-pointer">
-          <div class="flex-1 flex items-center justify-center">
-            <p class="pl-1 font-semibold text-base">Create...</p>
+    <div id="DASHBOARD_HEADER-DIV-1-2-4" class="flex justify-end items-center">
+      <div id="DASHBOARD_HEADER-DIV-1-2-4-1" class="w-72 h-14 flex items-center justify-evenly bg-gray-dark rounded-3xl justify-self-end">
+        <div id="DASHBOARD_HEADER-DIV-1-2-4-1-1" class="h-8 w-28 rounded-2xl dashboard-create-button flex items-center justify-center hover:cursor-pointer">
+          <div id="DASHBOARD_HEADER-DIV-1-2-4-1-1-1" class="flex-1 flex items-center justify-center">
+            <p id="DASHBOARD_HEADER-P-1-2-4-1-1-1-1" class="pl-1 font-semibold text-base">Create...</p>
           </div>
-          <div class="h-8 w-8 flex items-center justify-center dashboard-create-button-icon-border">
-            <svg class="text-white text-color-base" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <div id="DASHBOARD_HEADER-DIV-1-2-4-1-1-2" class="h-8 w-8 flex items-center justify-center dashboard-create-button-icon-border">
+            <svg id="DASHBOARD_HEADER-SVG-1-2-4-1-1-2-1" class="text-white text-color-base" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path id="DASHBOARD_HEADER-PATH-1-2-4-1-1-2-1-1" d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-
           </div>
-
         </div>
-        <div class="hover:cursor-pointer">
-          <svg class="text-white" width="28px" height="28px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 9.5H12M8 13H15M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.1971 3.23374 14.3397 3.65806 15.3845C3.73927 15.5845 3.77988 15.6845 3.798 15.7653C3.81572 15.8443 3.8222 15.9028 3.82221 15.9839C3.82222 16.0667 3.80718 16.1569 3.77711 16.3374L3.18413 19.8952C3.12203 20.2678 3.09098 20.4541 3.14876 20.5888C3.19933 20.7067 3.29328 20.8007 3.41118 20.8512C3.54589 20.909 3.73218 20.878 4.10476 20.8159L7.66265 20.2229C7.84309 20.1928 7.9333 20.1778 8.01613 20.1778C8.09715 20.1778 8.15566 20.1843 8.23472 20.202C8.31554 20.2201 8.41552 20.2607 8.61549 20.3419C9.6603 20.7663 10.8029 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <div id="DASHBOARD_HEADER-DIV-1-2-4-1-2" class="hover:cursor-pointer">
+          <svg id="DASHBOARD_HEADER-SVG-1-2-4-1-2-1" class="text-white" width="28px" height="28px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="DASHBOARD_HEADER-PATH-1-2-4-1-2-1-1" d="M8 9.5H12M8 13H15M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.1971 3.23374 14.3397 3.65806 15.3845C3.73927 15.5845 3.77988 15.6845 3.798 15.7653C3.81572 15.8443 3.8222 15.9028 3.82221 15.9839C3.82222 16.0667 3.80718 16.1569 3.77711 16.3374L3.18413 19.8952C3.12203 20.2678 3.09098 20.4541 3.14876 20.5888C3.19933 20.7067 3.29328 20.8007 3.41118 20.8512C3.54589 20.909 3.73218 20.878 4.10476 20.8159L7.66265 20.2229C7.84309 20.1928 7.9333 20.1778 8.01613 20.1778C8.09715 20.1778 8.15566 20.1843 8.23472 20.202C8.31554 20.2201 8.41552 20.2607 8.61549 20.3419C9.6603 20.7663 10.8029 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div class="relative hover:cursor-pointer">
-          <svg class="text-white" width="28px" height="28px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9.35419 21C10.0593 21.6224 10.9856 22 12 22C13.0145 22 13.9407 21.6224 14.6458 21M18 8C18 6.4087 17.3679 4.88258 16.2427 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.8826 2.63214 7.75738 3.75736C6.63216 4.88258 6.00002 6.4087 6.00002 8C6.00002 11.0902 5.22049 13.206 4.34968 14.6054C3.61515 15.7859 3.24788 16.3761 3.26134 16.5408C3.27626 16.7231 3.31488 16.7926 3.46179 16.9016C3.59448 17 4.19261 17 5.38887 17H18.6112C19.8074 17 20.4056 17 20.5382 16.9016C20.6852 16.7926 20.7238 16.7231 20.7387 16.5408C20.7522 16.3761 20.3849 15.7859 19.6504 14.6054C18.7795 13.206 18 11.0902 18 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <div id="DASHBOARD_HEADER-DIV-1-2-4-1-3" class="relative hover:cursor-pointer">
+          <svg id="DASHBOARD_HEADER-SVG-1-2-4-1-3-1" class="text-white" width="28px" height="28px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="DASHBOARD_HEADER-PATH-1-2-4-1-3-1-1" d="M9.35419 21C10.0593 21.6224 10.9856 22 12 22C13.0145 22 13.9407 21.6224 14.6458 21M18 8C18 6.4087 17.3679 4.88258 16.2427 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.8826 2.63214 7.75738 3.75736C6.63216 4.88258 6.00002 6.4087 6.00002 8C6.00002 11.0902 5.22049 13.206 4.34968 14.6054C3.61515 15.7859 3.24788 16.3761 3.26134 16.5408C3.27626 16.7231 3.31488 16.7926 3.46179 16.9016C3.59448 17 4.19261 17 5.38887 17H18.6112C19.8074 17 20.4056 17 20.5382 16.9016C20.6852 16.7926 20.7238 16.7231 20.7387 16.5408C20.7522 16.3761 20.3849 15.7859 19.6504 14.6054C18.7795 13.206 18 11.0902 18 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <div class="absolute -top-2 left-4 w-5 h-5 dashboard-user-panel-rounded-xs flex items-center justify-center">
+          <div id="DASHBOARD_HEADER-DIV-1-2-4-1-3-2" class="absolute -top-2 left-4 w-5 h-5 dashboard-user-panel-rounded-xs flex items-center justify-center">
 <!--            TODO: Fetch notifications amount from server-->
-            <p class="text-xs font-bold">9+</p>
+            <p id="DASHBOARD_HEADER-P-1-2-4-1-3-2-1" class="text-xs font-bold">9+</p>
           </div>
         </div>
-        <div class="flex items-center justify-center w-10 h-10">
-          <img class="h-full w-full dashboard-user-panel-img-rounded" src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-6/424961343_1716264755530257_7124981281078062877_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=_FIEGl0CtjQQ7kNvgH5szQQ&_nc_ht=scontent-waw2-2.xx&_nc_gid=A4dhxLZ3OhFLWoQsmTljI_c&oh=00_AYDgljSWqGVG6fQIwI2TbO6FE4EFh3Ak9uV_H0mgberDwA&oe=670F0D96" alt="Monnr">
-
+        <div id="DASHBOARD_HEADER-DIV-1-2-4-1-4" class="flex items-center justify-center w-10 h-10">
+          <img id="DASHBOARD_HEADER-IMG-1-2-4-1-4-1"
+               class="h-full w-full dashboard-user-panel-img-rounded"
+               src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-6/424961343_1716264755530257_7124981281078062877_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=_FIEGl0CtjQQ7kNvgH5szQQ&_nc_ht=scontent-waw2-2.xx&_nc_gid=A4dhxLZ3OhFLWoQsmTljI_c&oh=00_AYDgljSWqGVG6fQIwI2TbO6FE4EFh3Ak9uV_H0mgberDwA&oe=670F0D96" alt="Monnr">
         </div>
       </div>
     </div>
-
-
   </div>
 </section>

@@ -81,9 +81,8 @@ export class DashboardComponent {
       },
     ];
 
-    this.routeSubscription = this.router.events.subscribe(event => {
+    this.routeSubscription = this.router.events.subscribe((event): void => {
       if (event instanceof NavigationEnd) {
-        console.log(event.url)
         if (event.url.replace('/dashboard', '')) {
           this.sidebarButtons.forEach((button: SidebarButton): void => {
             button.highlighted = false;
@@ -92,7 +91,7 @@ export class DashboardComponent {
             (button: SidebarButton): boolean => button.redirectsTo === event.url.replace('/dashboard', ''))]
             .highlighted = true;
         }
-        if ((event.url === '/dashboard')) {
+        else {
           this.sidebarButtons.forEach((button: SidebarButton): void => {
             button.highlighted = false;
           });
