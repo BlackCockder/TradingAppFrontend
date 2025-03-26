@@ -3,9 +3,9 @@
 @import "tailwindcss/utilities";
 
 $dashboard-split-breakpoint: 80rem;
-$background-color-light: #3B3E41;
-$background-color-medium: #1E2124;
-$background-color-dark: #131516;
+$color-light: #3B3E41;
+$color-medium: #1E2124;
+$color-dark: #131516;
 $white-color-default: #E3E3E3;
 /*
 Jak cos sie zjebie z szerokoscia znowu to to jest w teorii lepsze niz "width: 100%":
@@ -18,25 +18,34 @@ html {
 }
 body {
   margin: 0;
-  background-color: $background-color-light;
+  background-color: $color-light;
   min-height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 .bg-gray-light {
-  background-color: $background-color-light;
+  background-color: $color-light;
 }
 .bg-gray-med {
-  background-color: $background-color-medium;
+  background-color: $color-medium;
 }
 .bg-gray-dark {
-  background-color: $background-color-dark;
+  background-color: $color-dark;
+}
+.gray-light {
+  color: $color-light;
+}
+.gray-med {
+  color: $color-medium;
+}
+.gray-dark {
+  color: $color-dark;
 }
 .text-color-base {
   color: #E3E3E3 !important;
 }
-.color-text-darker {
+.text-color-darker {
   color: #8B8B8B !important;
 }
 /* TODO: Change when dashboard desing will be readier. It cannot be in the main file */
@@ -82,4 +91,7 @@ p {
 }
 .outside-shadow-base {
   box-shadow: 4px 4px 16px 0 rgb(0, 0, 0);
+}
+.no-decorations {
+  text-decoration: none;
 }

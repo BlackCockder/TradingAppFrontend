@@ -7,10 +7,10 @@ import {DashboardComponentsModule} from "./DashboardComponents.module";
 
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    DashboardHeaderComponent
-  ],
+    declarations: [
+        DashboardComponent,
+        DashboardHeaderComponent
+    ],
     imports: [
         CommonModule,
         RouterOutlet,
@@ -19,6 +19,9 @@ import {DashboardComponentsModule} from "./DashboardComponents.module";
         NgOptimizedImage
     ],
 
+    exports: [
+        DashboardHeaderComponent
+    ]
 })
 export class DashboardModule {
 }

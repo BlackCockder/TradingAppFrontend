@@ -12,9 +12,10 @@ import {SettingsComponent} from "../features/dashboard/components/settings/setti
 import {CreatorComponent} from "../features/dashboard/components/creator/creator.component";
 import {dashboardGuard} from "../auth/routeGuards/Dashboard.guard";
 import {balancesResolver} from "../features/dashboard/components/dashboardHeader/resolvers/balances.resolver";
+import {RegisterComponent} from "../features/register/register.component";
 
 export const routes: Routes = [
-//   {path: 'register', component: RegisterComponent},
+  {path: 'register', component: RegisterComponent},
 //   {path: 'guide', component: SellerGuideComponent},
   {path: '', redirectTo: '/dev', pathMatch: 'full'},
 //   {path: 'welcome', component: WelcomeComponent},

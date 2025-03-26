@@ -1,0 +1,31 @@
+<header id="main-header" class="fixed top-0 left-0 bg-gray-med w-full h-20 flex items-center">
+  <section id="logo-section" class="flex items-center justify-center hover:cursor-pointer" routerLink="/">
+    <img id="logo-section-image" ngSrc="https://picsum.photos/id/237/200/300" width="40" height="40" alt="Website Logo" class="w-10 h-10">
+    <h1 id="logo-section-title" class="text-color-base">TradingApp</h1>
+  </section>
+  <!-- TODO: Implement searching algorithm when ready -->
+  <section id="search-bar-section" class="flex-grow flex items-center justify-center">
+    <div id="search-bar-main" class="w-full h-10 flex items-center justify-center bg-gray-dark rounded-2xl inside-shadow-base">
+      <div id="search-bar-icon-wrapper" class="w-10 h-full flex items-center justify-center">
+        <svg id="search-bar-icon" class="w-6 h-6 text-color-darker" width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <input id="search-bar-input" type="search" class="flex-1 h-1/2 bg-transparent outline-none text-color-base" placeholder="Search...">
+    </div>
+  </section>
+  <section id="common-routes">
+
+  </section>
+  <section id="user-panel-section">
+    <button>
+      <p>Log in</p>
+      <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.33789 7C5.06694 4.01099 8.29866 2 12.0001 2C17.5229 2 22.0001 6.47715 22.0001 12C22.0001 17.5228 17.5229 22 12.0001 22C8.29866 22 5.06694 19.989 3.33789 17M12 16L16 12M16 12L12 8M16 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button>
+      <p>Sign up</p>
+    </button>
+  </section>
+</header>

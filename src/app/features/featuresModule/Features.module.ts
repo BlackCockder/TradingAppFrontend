@@ -1,13 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {DashboardModule} from "../dashboard/modules/Dashboard.module";
+import {RegisterComponent} from "../register/register.component";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    RegisterComponent
+  ],
   imports: [
     CommonModule,
-    DashboardModule
+    DashboardModule,
   ]
 })
 export class FeaturesModule {

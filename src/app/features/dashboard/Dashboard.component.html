@@ -18,7 +18,7 @@
            *ngFor="let button of sidebarButtons; let i = index">
         <div id="Dashboard-Div-1-2-2-1For{{i}}-1IfTrue" *ngIf="button.highlighted" class="absolute top-0 left-0 h-full w-1 sidebar-button-highlighter"></div>
         <div id="Dashboard-Div-1-2-2-1For{{i}}-2">
-          <div id="Dashboard-Div-1-2-2-1For{{i}}-2-1" class="w-full h-6 text-white color-text-darker"
+          <div id="Dashboard-Div-1-2-2-1For{{i}}-2-1" class="w-full h-6 text-white text-color-darker"
                [ngClass]="{'op-text-base': button.highlighted, 'op-text-darker': !button.highlighted,}"
                [innerHTML]="button.svg"></div>
           <p id="Dashboard-P-1-2-2-1For{{i}}-2-2" class="text-white text-base"

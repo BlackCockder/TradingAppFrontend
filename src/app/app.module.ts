@@ -8,6 +8,7 @@ import {DevModule} from "./dev/modules/Dev.module";
 import {FeaturesModule} from "./features/featuresModule/Features.module";
 import {QuillModule} from "ngx-quill";
 import {FormsModule} from "@angular/forms";
+import {SharedModule} from "./shared/sharedModule/shared.module";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     AppConfigModule,
     RouterOutlet,
+    SharedModule,
     DevModule,
     FeaturesModule,
     FormsModule,
