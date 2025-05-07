@@ -8,9 +8,10 @@ import {DataProcessingService} from "../../../../shared/globalServices/DataProce
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-dashboard-header',
-  templateUrl: './DashboardHeader.component.html',
-  styleUrl: './DashboardHeader.component.scss'
+    selector: 'app-dashboard-header',
+    templateUrl: './DashboardHeader.component.html',
+    styleUrl: './DashboardHeader.component.scss',
+    standalone: false
 })
 export class DashboardHeaderComponent {
   protected balances!: DisplayBalanceInterface[];

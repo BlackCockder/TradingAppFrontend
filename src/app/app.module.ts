@@ -9,6 +9,7 @@ import {FeaturesModule} from "./features/featuresModule/Features.module";
 import {QuillModule} from "ngx-quill";
 import {FormsModule} from "@angular/forms";
 import {SharedModule} from "./shared/sharedModule/shared.module";
+import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {SharedModule} from "./shared/sharedModule/shared.module";
     DevModule,
     FeaturesModule,
     FormsModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    ButtonModule
   ],
   exports: [],
   bootstrap: [

@@ -4,9 +4,10 @@ import {SERVER_IP} from "../../../../../main";
 import {AuthService} from "../../../../auth/Auth.service";
 
 @Component({
-  selector: 'app-services',
-  templateUrl: './services.component.html',
-  styleUrl: './services.component.scss'
+    selector: 'app-services',
+    templateUrl: './services.component.html',
+    styleUrl: './services.component.scss',
+    standalone: false
 })
 export class ServicesComponent {
   protected offerDescription!: string;

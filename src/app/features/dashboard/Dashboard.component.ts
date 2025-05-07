@@ -9,9 +9,10 @@ import {AuthService} from "../../auth/Auth.service";
 import {SERVER_IP} from "../../../main";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './Dashboard.component.html',
-  styleUrl: './Dashboard.component.scss'
+    selector: 'app-dashboard',
+    templateUrl: './Dashboard.component.html',
+    styleUrl: './Dashboard.component.scss',
+    standalone: false
 })
 export class DashboardComponent {
   sidebarButtons!: SidebarButton[];

@@ -6,9 +6,10 @@ import {SERVER_IP} from "../../../../../main";
 import {AuthService} from "../../../../auth/Auth.service";
 
 @Component({
-  selector: 'app-creator',
-  templateUrl: './creator.component.html',
-  styleUrl: './creator.component.scss'
+    selector: 'app-creator',
+    templateUrl: './creator.component.html',
+    styleUrl: './creator.component.scss',
+    standalone: false
 })
 export class CreatorComponent {
   protected listingFormGroup!: FormGroup;

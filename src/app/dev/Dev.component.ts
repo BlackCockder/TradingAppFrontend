@@ -4,9 +4,10 @@ import {Subscription} from "rxjs";
 import {AuthService} from "../auth/Auth.service";
 
 @Component({
-  selector: 'app-dev',
-  templateUrl: './Dev.component.html',
-  styleUrl: './Dev.component.scss'
+    selector: 'app-dev',
+    templateUrl: './Dev.component.html',
+    styleUrl: './Dev.component.scss',
+    standalone: false
 })
 export class DevComponent {
   errorSubscription!: Subscription;
