@@ -4,7 +4,6 @@ import {RefreshResponse} from "../auth/interfaces/RefreshResponse.interface";
 import {HttpErrorResponse} from "@angular/common/http";
 
 export function initializeAppFactory(authService: AuthService): () => Promise<any> {
-
   return (): Promise<any> => {
     return firstValueFrom(authService.refreshSession().pipe(
       tap((response: RefreshResponse): void => {
