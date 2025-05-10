@@ -31,14 +31,13 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
+              "src/styles/styles.scss",
               "node_modules/quill/dist/quill.snow.css"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles"
-              ]
-            },
+              "includePaths": ["src/styles"]
+            }
+          ,
             "scripts": []
           },
           "configurations": {
@@ -95,7 +94,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
             ],
             "scripts": []
           }

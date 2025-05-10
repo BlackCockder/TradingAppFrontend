@@ -1,0 +1,11 @@
+@use 'mixins' as mixins;
+.header-navigation-responsive {
+}
+.header-logo-title-responsive {
+}
+.header-search-bar-responsive {
+  width: 30rem;
+  @include mixins.respond(md) {
+
+  }
+}

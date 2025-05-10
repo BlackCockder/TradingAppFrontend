@@ -2,6 +2,18 @@ import { NgModule } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {HeaderComponent} from "../components/header/header.component";
 import {RouterLink} from "@angular/router";
+import {Divider} from "primeng/divider";
+import {Button, ButtonDirective, ButtonIcon, ButtonLabel} from "primeng/button";
+import {Menu} from "primeng/menu";
+import {Select} from "primeng/select";
+import {PrimeTemplate} from "primeng/api";
+import {AutoComplete} from "primeng/autocomplete";
+import {FormsModule} from "@angular/forms";
+import {Ripple} from "primeng/ripple";
+import {IconField} from "primeng/iconfield";
+import {InputIcon} from "primeng/inputicon";
+import {InputText} from "primeng/inputtext";
+import {Dialog} from "primeng/dialog";
 
 
 
@@ -15,7 +27,22 @@ import {RouterLink} from "@angular/router";
   imports: [
     CommonModule,
     NgOptimizedImage,
-    RouterLink
+    RouterLink,
+    Divider,
+    Button,
+    Menu,
+    Select,
+    PrimeTemplate,
+    AutoComplete,
+    ButtonDirective,
+    ButtonIcon,
+    FormsModule,
+    ButtonLabel,
+    Ripple,
+    IconField,
+    InputIcon,
+    InputText,
+    Dialog
   ]
 })
 export class SharedModule { }

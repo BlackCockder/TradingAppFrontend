@@ -23,6 +23,7 @@
     "ngx-quill": "^27.0.2",
     "postcss": "^8.4.47",
     "postcss-import": "^16.1.0",
+    "primeicons": "^7.0.0",
     "primeng": "^19.1.2",
     "quill": "^2.0.2",
     "rxjs": "~7.8.0",

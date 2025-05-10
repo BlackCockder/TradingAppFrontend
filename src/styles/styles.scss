@@ -1,8 +1,11 @@
+@use 'mixins';
+@use 'breakpoints';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "../../node_modules/primeicons/primeicons.css";
 
-$dashboard-split-breakpoint: 80rem;
 $color-light: #3B3E41;
 $color-medium: #1E2124;
 $color-dark: #131516;
@@ -56,7 +59,7 @@ body {
 .dashboard-right-side{
   width: 100%;
 }
-@media (min-width: $dashboard-split-breakpoint) {
+@media (min-width: 80rem) {
   .dashboard-left-side{
     width: calc(50% - 0.75rem);
     height: 100%;
@@ -95,3 +98,4 @@ p {
 .no-decorations {
   text-decoration: none;
 }
+
