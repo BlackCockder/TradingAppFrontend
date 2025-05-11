@@ -4,8 +4,22 @@
 .header-logo-title-responsive {
 }
 .header-search-bar-responsive {
-  width: 30rem;
+  @include mixins.respond(xs) {
+
+  }
+  @include mixins.respond(sm) {
+
+  }
   @include mixins.respond(md) {
 
+  }
+  @include mixins.respond(lg) {
+
+  }
+  @include mixins.respond(xl) {
+
+  }
+  @include mixins.respond('2xl') {
+    width: 30rem;
   }
 }

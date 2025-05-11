@@ -5,7 +5,6 @@ $breakpoints: (
   lg: 64rem,             // 1024px
   xl: 80rem,             // 1280px
   "2xl": 96rem,          // 1536px
-  "3xl": 120rem,         // 1920px
   dashboard-split: 80rem // 1280px
 );
-@debug 'Mixins loaded!';
+@debug 'Breakpoints loaded!';

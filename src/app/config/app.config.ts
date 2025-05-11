@@ -8,8 +8,8 @@ import {initializeAppFactory} from "./AppInitializer.factory";
 import {AuthService} from "../auth/Auth.service";
 import {providePrimeNG} from "primeng/config";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
-import Aura from '@primeng/themes/aura';
 import {FilterMatchMode} from "primeng/api";
+import {MyPreset} from "../../styles/themesOverride";
 
 export const AppConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}), provideRouter(routes),
@@ -35,7 +35,7 @@ export const AppConfig: ApplicationConfig = {
       },
       // inputVariant: 'filled',
       theme: {
-        preset: Aura
+        preset: MyPreset
       },
       filterMatchModeOptions: {
         text: [FilterMatchMode.STARTS_WITH, FilterMatchMode.CONTAINS, FilterMatchMode.NOT_CONTAINS, FilterMatchMode.ENDS_WITH, FilterMatchMode.EQUALS, FilterMatchMode.NOT_EQUALS],
