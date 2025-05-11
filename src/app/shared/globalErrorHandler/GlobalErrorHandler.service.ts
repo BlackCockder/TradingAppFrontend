@@ -1,6 +1,6 @@
 import {ErrorHandler, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {MessageService} from "primeng/api";
+import {MessageDisplayService} from "../globalServices/MessageDisplay.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   private static errorSubject: BehaviorSubject<Error | null> = new BehaviorSubject<Error | null>(null);
   private errorTimeoutId: number | null = null;
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageDisplayService: MessageDisplayService) {
   }
 
   handleError(error: any): void {
@@ -18,14 +18,8 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       clearTimeout(this.errorTimeoutId);
     }
     GlobalErrorHandlerService.errorSubject.next(formattedError);
-    console.log(error);
-
-    this.messageService.add({
-      severity: 'error',
-      summary: 'An error occurred',
-      detail: formattedError.message,
-      life: 3500
-    });
+    console.error(error);
+    this.messageDisplayService.triggerToastMessage('error', 'An error has occured!', formattedError.message, 3500);
 
     this.errorTimeoutId = setTimeout((): void => {
       GlobalErrorHandlerService.errorSubject.next(null);

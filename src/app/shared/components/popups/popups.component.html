@@ -1,0 +1,28 @@
+<p-dialog
+  header="Login"
+  [(visible)]="this.popupIDBoolArray[0]"
+  modal="true"
+  [dismissableMask]="true"
+  [closable]="true"
+  [style]="{ width: '350px' }"
+  [draggable]="false"
+>
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="username">Username</label>
+      <input id="username" type="text" pInputText [(ngModel)]="username" />
+    </div>
+
+    <div class="p-field">
+      <label for="password">Password</label>
+      <input id="password" type="password" pInputText [(ngModel)]="password" />
+    </div>
+
+    <p-button
+      label="Log In"
+      icon="pi pi-sign-in"
+      (onClick)="closeAnyPopup()"
+      class="mt-2"
+    ></p-button>
+  </div>
+</p-dialog>

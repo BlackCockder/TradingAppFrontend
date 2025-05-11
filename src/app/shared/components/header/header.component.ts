@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {PopupsService} from "../popups/services/popups.service";
 
 @Component({
     selector: 'app-header',
@@ -12,13 +13,13 @@ export class HeaderComponent {
     {label: 'Profiles', icon: 'pi pi-book', routerLink: ['/profiles']},
     {label: 'Companies', icon: 'pi pi-video', routerLink: ['/companies']}
   ];
-  protected visible!: boolean;
 
-  constructor() {
-    this.visible = false;
+  constructor(private popupsService: PopupsService) {
+  }
+  ngOnInit(): void {
   }
 
-  closeDialog() {
-    this.visible = !this.visible;
+  protected triggerLogin(): void {
+    this.popupsService.triggerPopup(0);
   }
 }

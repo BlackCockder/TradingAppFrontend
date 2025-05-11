@@ -14,15 +14,18 @@ import {IconField} from "primeng/iconfield";
 import {InputIcon} from "primeng/inputicon";
 import {InputText} from "primeng/inputtext";
 import {Dialog} from "primeng/dialog";
+import {PopupsComponent} from "../components/popups/popups.component";
 
 
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    PopupsComponent
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    PopupsComponent
   ],
   imports: [
     CommonModule,

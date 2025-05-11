@@ -2,8 +2,8 @@
   height: 5.5rem;
 }
 header {
-  backdrop-filter: blur(10px);  /* Applies the blur */
-  -webkit-backdrop-filter: blur(10px);  /* For Safari */
-  border-bottom: 1px solid rgba(0,0,0,0.1); /* Optional: subtle bottom border */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);  /* Safari */
+  border-bottom: 1px solid rgba(0,0,0,0.1); /* Wyglada niezle i mozna zostawic */
   z-index: 1000;
 }
