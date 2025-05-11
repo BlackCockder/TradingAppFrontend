@@ -33,16 +33,16 @@
         Social <i class="pi pi-chevron-down ml-2"></i>
       </ng-template>
     </p-button>
-    <p-menu #social [popup]="true" [model]="items"></p-menu>
 
   </section>
+  <p-menu #social [popup]="true" [model]="items"></p-menu>
   <div class="h-2/3">
     <p-divider layout="vertical" />
   </div>
-  <section id="header-user-panel" class="flex items-center justify-evenly w">
-    <p-button label="Login" severity="contrast" variant="text" (onClick)="closeDialog()">
+  <section id="header-user-panel" class="flex items-center justify-evenly header-user-panel-responsive">
+    <p-button label="Login" severity="contrast" variant="text" (onClick)="closeDialog()" icon="pi pi-arrow-circle-right" iconPos="right">
     </p-button>
-    <p-dialog maskStyleClass="backdrop-blur-sm" [(visible)]="visible" styleClass="!border-0 !bg-transparent">
+    <p-dialog [focusTrap]="visible" [dismissableMask]="visible" maskStyleClass="backdrop-blur-sm" [(visible)]="visible" styleClass="!border-0 !bg-transparent">
       <ng-template #headless>
         <div
           class="flex flex-col px-8 py-8 gap-6 rounded-2xl"
@@ -93,8 +93,8 @@
         </div>
       </ng-template>
     </p-dialog>
-    <p-button label="Sign up" severity="warn">
+    <p-button styleClass="w-28" label="Sign up" severity="warn">
     </p-button>
   </section>
 </section>
-<hr>
+<hr />

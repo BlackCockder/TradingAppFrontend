@@ -1,4 +1,4 @@
-<header class="fixed h-16 w-full top-0 left-0 bg-gray-dark">
+<header class="fixed h-16 w-full top-0 left-0">
   <app-header>
 
   </app-header>
@@ -6,9 +6,10 @@
 <div id="header-filler" class="w-full h-16">
 
 </div>
+<p-button label="Toggle Dark Mode" (onClick)="toggleDarkMode()"/>
 <main>
-  <p-toast></p-toast>
   <router-outlet>
 
   </router-outlet>
 </main>
+<p-toast></p-toast>

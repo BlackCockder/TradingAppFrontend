@@ -1,7 +1,43 @@
 @use 'mixins' as mixins;
+
 .header-navigation-responsive {
+  @include mixins.respond(xs) {
+
+  }
+  @include mixins.respond(sm) {
+
+  }
+  @include mixins.respond(md) {
+
+  }
+  @include mixins.respond(lg) {
+
+  }
+  @include mixins.respond(xl) {
+
+  }
+  @include mixins.respond('2xl') {
+    width: 30rem;
+  }
 }
 .header-logo-title-responsive {
+  @include mixins.respond(xs) {
+
+  }
+  @include mixins.respond(sm) {
+
+  }
+  @include mixins.respond(md) {
+
+  }
+  @include mixins.respond(lg) {
+
+  }
+  @include mixins.respond(xl) {
+
+  }
+  @include mixins.respond('2xl') {
+  }
 }
 .header-search-bar-responsive {
   @include mixins.respond(xs) {
@@ -21,5 +57,25 @@
   }
   @include mixins.respond('2xl') {
     width: 30rem;
+  }
+}
+.header-user-panel-responsive {
+  @include mixins.respond(xs) {
+
+  }
+  @include mixins.respond(sm) {
+
+  }
+  @include mixins.respond(md) {
+
+  }
+  @include mixins.respond(lg) {
+
+  }
+  @include mixins.respond(xl) {
+
+  }
+  @include mixins.respond('2xl') {
+    width: 14rem;
   }
 }

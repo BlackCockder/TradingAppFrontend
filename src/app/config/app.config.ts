@@ -9,7 +9,7 @@ import {AuthService} from "../auth/Auth.service";
 import {providePrimeNG} from "primeng/config";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import {FilterMatchMode} from "primeng/api";
-import {MyPreset} from "../../styles/themesOverride";
+import {MyPreset} from "../../styles/themesOverride.styles";
 
 export const AppConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}), provideRouter(routes),
@@ -35,7 +35,10 @@ export const AppConfig: ApplicationConfig = {
       },
       // inputVariant: 'filled',
       theme: {
-        preset: MyPreset
+        preset: MyPreset,
+        options: {
+          darkModeSelector: '.my-app-dark'
+        }
       },
       filterMatchModeOptions: {
         text: [FilterMatchMode.STARTS_WITH, FilterMatchMode.CONTAINS, FilterMatchMode.NOT_CONTAINS, FilterMatchMode.ENDS_WITH, FilterMatchMode.EQUALS, FilterMatchMode.NOT_EQUALS],
