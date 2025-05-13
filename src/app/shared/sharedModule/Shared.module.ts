@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {HeaderComponent} from "../components/header/header.component";
+import {HeaderComponent} from "../components/header/Header.component";
 import {RouterLink} from "@angular/router";
 import {Divider} from "primeng/divider";
 import {Button, ButtonDirective, ButtonIcon, ButtonLabel} from "primeng/button";
@@ -14,18 +14,16 @@ import {IconField} from "primeng/iconfield";
 import {InputIcon} from "primeng/inputicon";
 import {InputText} from "primeng/inputtext";
 import {Dialog} from "primeng/dialog";
-import {PopupsComponent} from "../components/popups/popups.component";
+import {PopupsModule} from "../components/popups/modules/Popups.module";
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    PopupsComponent
   ],
   exports: [
     HeaderComponent,
-    PopupsComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +43,8 @@ import {PopupsComponent} from "../components/popups/popups.component";
     IconField,
     InputIcon,
     InputText,
-    Dialog
+    Dialog,
+    PopupsModule
   ]
 })
 export class SharedModule { }

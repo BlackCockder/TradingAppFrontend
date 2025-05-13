@@ -9,7 +9,7 @@ import {AuthService} from "../auth/Auth.service";
 import {providePrimeNG} from "primeng/config";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import {FilterMatchMode} from "primeng/api";
-import {MyPreset} from "../../styles/themesOverride.styles";
+import {MyPreset} from "../../styles/ThemesOverride.styles";
 
 export const AppConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}), provideRouter(routes),

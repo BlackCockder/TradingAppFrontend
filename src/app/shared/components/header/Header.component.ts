@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MenuItem} from "primeng/api";
-import {PopupsService} from "../popups/services/popups.service";
+import {PopupsService} from "../popups/services/Popups.service";
+import {PopupTypes} from "../popups/enums/PopupTypes";
 
 @Component({
     selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrl: './header.component.scss',
+    templateUrl: './Header.component.html',
+    styleUrl: './Header.component.scss',
     standalone: false
 })
 export class HeaderComponent {
@@ -20,6 +21,6 @@ export class HeaderComponent {
   }
 
   protected triggerLogin(): void {
-    this.popupsService.triggerPopup(0);
+    this.popupsService.triggerPopup(PopupTypes.Login);
   }
 }

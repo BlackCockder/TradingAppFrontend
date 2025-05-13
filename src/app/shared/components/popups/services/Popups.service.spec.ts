@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PopupsService } from './popups.service';
+import { PopupsService } from './Popups.service';
 
 describe('PopupsService', () => {
   let service: PopupsService;
