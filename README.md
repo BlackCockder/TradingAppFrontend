@@ -1,27 +1,24 @@
 # TradingAppFrontv2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+Resuming the TradingApp project on clean install of Angular 19. Strong typing required here, as well as standardized naming convention and code writing.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Project fuckup to remember 1: Absolute positioned PrimeNG components on fixed DOM elements
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+When attempting to append absolutely positioned PrimeNG component to DOM element that is fixed or is inside fixed space, we need to reset `top:` and `left:` styles appended by PrimeNG.
+Here is a procedure to solve it without using direct DOM access:
+1. In TS, create a variable that will contain the corrected style, for example: 
+`protected confirmPopoverStyleCorrection: Partial<CSSStyleDeclaration> = {};`. Its need to be set to empty style by initialization.
+2. Set `[style]='confirmPopoverStyleCorrection'` to the PrimeNG component that will render the absolutely positioned element
+3. Create methods for setting `top:` and `left:` styles, one that sets it and other that resets it, example:
+    <pre> protected onPopoverShow(): void {
+      this.socialStyleCorrection = { 
+        top: '2.625rem', 
+        left: '0px' 
+      } 
+    }</pre>
+    <pre> protected onPopoverHide(): void {
+      this.socialStyleCorrection = {} 
+    }</pre>
+4. Assing them to lifecycle hooks of PrimeNG components: `(onShow) = 'onPopoverShow()'`, `(onHide)='onPopoverHide()'`
+5. To handle responsiveness (if needed for some reason), you can simply assign string variables to the styles instead of fixed strings.
