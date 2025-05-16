@@ -16,7 +16,7 @@
   @include mixins.respond(xl) {
 
   }
-  @include mixins.respond('2xl') {
+  @media (min-width: 87.825rem) {
     width: 30rem;
   }
 }
@@ -36,7 +36,8 @@
   @include mixins.respond(xl) {
 
   }
-  @include mixins.respond('2xl') {
+  @media (min-width: 87.825rem) {
+    width: 12rem;
   }
 }
 .header-search-bar-responsive {
@@ -52,10 +53,7 @@
   @include mixins.respond(lg) {
 
   }
-  @include mixins.respond(xl) {
-
-  }
-  @include mixins.respond('2xl') {
+  @media (min-width: 87.825rem) {
     width: 30rem;
   }
 }
@@ -72,10 +70,7 @@
   @include mixins.respond(lg) {
 
   }
-  @include mixins.respond(xl) {
-
-  }
-  @include mixins.respond('2xl') {
+  @media (min-width: 87.825rem) {
     width: 14rem;
   }
 }

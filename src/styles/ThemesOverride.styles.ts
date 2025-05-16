@@ -52,23 +52,5 @@ export const MyPreset = definePreset(Aura, {
     }
   },
   components: {
-    inputtext: {
-      colorScheme: {
-        light: {
-          focus: {
-            border: {
-              color: '#ffffff'
-            }
-          }
-        },
-        dark: {
-          focus: {
-            border: {
-              color: '#ffffff'
-            }
-          }
-        }
-      }
-    }
   }
 });

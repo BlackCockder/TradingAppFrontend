@@ -15,6 +15,12 @@ import {InputIcon} from "primeng/inputicon";
 import {InputText} from "primeng/inputtext";
 import {Dialog} from "primeng/dialog";
 import {PopupsModule} from "../components/popups/modules/Popups.module";
+import {StyleClass} from "primeng/styleclass";
+import {Popover} from "primeng/popover";
+import {InputGroup} from "primeng/inputgroup";
+import {InputGroupAddon} from "primeng/inputgroupaddon";
+import {Badge} from "primeng/badge";
+import {Avatar} from "primeng/avatar";
 
 
 
@@ -44,7 +50,13 @@ import {PopupsModule} from "../components/popups/modules/Popups.module";
     InputIcon,
     InputText,
     Dialog,
-    PopupsModule
+    PopupsModule,
+    StyleClass,
+    Popover,
+    InputGroup,
+    InputGroupAddon,
+    Badge,
+    Avatar
   ]
 })
 export class SharedModule { }
