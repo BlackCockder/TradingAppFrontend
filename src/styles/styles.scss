@@ -60,7 +60,7 @@ body {
   color: #E3E3E3 !important;
 }
 .text-color-darker {
-  color: #8B8B8B !important;
+  color: var(--p-zinc-400) !important;
 }
 /* TODO: Change when dashboard desing will be readier. It cannot be in the main file */
 /* From here: */

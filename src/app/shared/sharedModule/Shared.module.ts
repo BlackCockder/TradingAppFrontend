@@ -21,6 +21,7 @@ import {InputGroup} from "primeng/inputgroup";
 import {InputGroupAddon} from "primeng/inputgroupaddon";
 import {Badge} from "primeng/badge";
 import {Avatar} from "primeng/avatar";
+import {ScrollPanel} from "primeng/scrollpanel";
 
 
 
@@ -31,32 +32,33 @@ import {Avatar} from "primeng/avatar";
   exports: [
     HeaderComponent,
   ],
-  imports: [
-    CommonModule,
-    NgOptimizedImage,
-    RouterLink,
-    Divider,
-    Button,
-    Menu,
-    Select,
-    PrimeTemplate,
-    AutoComplete,
-    ButtonDirective,
-    ButtonIcon,
-    FormsModule,
-    ButtonLabel,
-    Ripple,
-    IconField,
-    InputIcon,
-    InputText,
-    Dialog,
-    PopupsModule,
-    StyleClass,
-    Popover,
-    InputGroup,
-    InputGroupAddon,
-    Badge,
-    Avatar
-  ]
+    imports: [
+        CommonModule,
+        NgOptimizedImage,
+        RouterLink,
+        Divider,
+        Button,
+        Menu,
+        Select,
+        PrimeTemplate,
+        AutoComplete,
+        ButtonDirective,
+        ButtonIcon,
+        FormsModule,
+        ButtonLabel,
+        Ripple,
+        IconField,
+        InputIcon,
+        InputText,
+        Dialog,
+        PopupsModule,
+        StyleClass,
+        Popover,
+        InputGroup,
+        InputGroupAddon,
+        Badge,
+        Avatar,
+        ScrollPanel
+    ]
 })
 export class SharedModule { }

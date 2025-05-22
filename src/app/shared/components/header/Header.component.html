@@ -1,8 +1,10 @@
 <section id="header-content" class="w-full h-full flex items-center">
   <section id="header-logo-title" class="header-logo-title-responsive flex items-center justify-center">
     <div id="header-logo-title-content-wrapper" class="flex items-center justify-center w-5/6">
-      <a href="" class="w-full h-full flex items-center justify-evenly" [routerLink]="''">
-        <img ngSrc="https://image.similarpng.com/file/similarpng/very-thumbnail/2021/07/Gaming-logo-template-on-transparent-background-PNG.png" alt="Logo" width="48" height="48" class="rounded-2xl">
+      <a href="" class="w-full h-full flex items-center justify-evenly" routerLink="">
+        <img
+          ngSrc="https://image.similarpng.com/file/similarpng/very-thumbnail/2021/07/Gaming-logo-template-on-transparent-background-PNG.png"
+          alt="Logo" width="48" height="48" class="rounded-2xl">
         <h1 class="">
           TradingApp
         </h1>
@@ -11,15 +13,33 @@
   </section>
   <section id="header-search-bar" class="h-full flex items-center justify-center header-search-bar-responsive">
     <p-iconfield #searchBar styleClass="w-full" class="relative">
-      <p-inputicon styleClass="pi pi-search" />
-      <input (focus)="showSearchPopover($event)"
-             (blur)="scrollMenu.hide()"
+      <p-inputicon styleClass="pi pi-search"/>
+      <input (blur)="onSearchBlur($event)"
+             (focus)="showSearchPopover($event)"
              type="text"
              pInputText
              fluid
-             placeholder="Search" />
+             #searchInput
+             placeholder="Search"
+             [(ngModel)]="searchedPhrase"
+      />
     </p-iconfield>
-    <p-popover #scrollMenu [appendTo]="searchBar" [dismissable]="false" [style]="searchPopoverStyleCorrection" styleClass="w-full" (onShow)="onSearchPopoverShow()" (onHide)="onSearchPopoverHide()">
+    <p-popover #scrollMenu [appendTo]="searchBar" [dismissable]="false" [style]="searchPopoverStyleCorrection"
+               styleClass="w-full" (onShow)="onSearchPopoverShow()" (onHide)="onSearchPopoverHide()">
+      <p-button styleClass="w-full bg-red-900">
+        {{searchedPhrase}} - Search in markets, posts, users and more
+      </p-button>
+      <p class="text-color-darker mt-2">Recent searches</p>
+      <p-divider>
+        <p class="text-color-darker">
+          Trending markets
+        </p>
+      </p-divider>
+      <p-divider>
+        <p class="text-color-darker">
+          Popular posts
+        </p>
+      </p-divider>
 
     </p-popover>
   </section>
@@ -28,33 +48,35 @@
   </section>
   <section id="header-navigation" class="h-full flex items-center justify-evenly header-navigation-responsive">
 
-    <a pButton pRipple severity="contrast" outlined routerLink="/marketplace">
+    <a pButton pRipple text severity="contrast"  routerLink="/marketplace">
       <i pButtonIcon class="pi pi-shopping-cart"></i>
       <span pButtonLabel>Marketplace</span>
     </a>
 
-    <a pButton pRipple severity="contrast" outlined routerLink="/guide" >
+    <a pButton pRipple text severity="contrast" routerLink="/guide">
       <i pButtonIcon class="pi pi-book"></i>
       <span pButtonLabel>Guide</span>
     </a>
 
-    <p-button #socialBtn (click)="toggleSocial($event)" severity="contrast" variant="outlined" class="relative">
+    <p-button #socialBtn (click)="toggleSocial($event)" severity="contrast" variant="text" class="relative">
       <ng-template pTemplate="default">
         Social <i class="pi pi-chevron-down ml-2"></i>
       </ng-template>
     </p-button>
 
-    <p-menu #social [appendTo]="socialBtn" [popup]="true" [model]="items" [style]="socialStyleCorrection" class="hidden" (onShow)="onSocialShow()" (onHide)="onSocialHide()"></p-menu>
+    <p-menu #social [appendTo]="socialBtn" [popup]="true" [model]="items" [style]="socialStyleCorrection" class="hidden"
+            (onShow)="onSocialShow()" (onHide)="onSocialHide()"></p-menu>
   </section>
   <div class="h-2/3">
-    <p-divider layout="vertical" />
+    <p-divider layout="vertical"/>
   </div>
   <section id="header-user-panel" class="flex items-center justify-evenly header-user-panel-responsive">
-    <p-button label="Login" severity="contrast" variant="text" (onClick)="triggerLogin()" icon="pi pi-arrow-circle-right" iconPos="right">
+    <p-button label="Login" severity="contrast" variant="text" (onClick)="triggerLogin()"
+              icon="pi pi-arrow-circle-right" iconPos="right">
     </p-button>
     <a class="w-28" pButton pRipple severity="warn" routerLink="/register">
       <span pButtonLabel>Sign up</span>
     </a>
   </section>
 </section>
-<hr />
+<hr/>

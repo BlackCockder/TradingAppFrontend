@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {PopupsService} from "../popups/services/Popups.service";
 import {PopupTypes} from "../popups/enums/PopupTypes";
@@ -10,20 +10,28 @@ import {PopupTypes} from "../popups/enums/PopupTypes";
     standalone: false
 })
 export class HeaderComponent {
+  @ViewChild('searchInput') searchInputRef!: ElementRef;
   @ViewChild('social') social: any;
   @ViewChild('scrollMenu') scrollMenu: any;
   protected items: MenuItem[] = [
     {label: 'Profiles', icon: 'pi pi-book', routerLink: ['/profiles']},
-    {label: 'Companies', icon: 'pi pi-video', routerLink: ['/companies']}
+    {label: 'Companies', icon: 'pi pi-video', routerLink: ['/companies']},
+    {label: 'News and Votes', icon: 'pi pi-book', routerLink: ['/news']}
   ];
+  protected lmao: string[] = ['Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!',
+    'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!',
+    'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!',
+    'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!']
   protected socialStyleCorrection!: Partial<CSSStyleDeclaration>;
   protected searchPopoverStyleCorrection!: Partial<CSSStyleDeclaration>;
+  protected searchedPhrase!: string;
 
   constructor(private popupsService: PopupsService) {
   }
   ngOnInit(): void {
     this.socialStyleCorrection = {};
     this.searchPopoverStyleCorrection = {}
+    this.searchedPhrase = '';
   }
 
   protected triggerLogin(): void {
@@ -44,7 +52,7 @@ export class HeaderComponent {
     this.socialStyleCorrection = {};
   }
   protected showSearchPopover(event: FocusEvent): void {
-    this.scrollMenu.toggle(event);
+    this.scrollMenu.show(event);
   }
 
   protected onSearchPopoverShow(): void {
@@ -58,4 +66,7 @@ export class HeaderComponent {
     this.searchPopoverStyleCorrection = {}
   }
 
+  protected onSearchBlur(event: FocusEvent): void {
+    this.scrollMenu.hide();
+  }
 }
