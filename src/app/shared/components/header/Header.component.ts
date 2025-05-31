@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {PopupsService} from "../popups/services/Popups.service";
 import {PopupTypes} from "../popups/enums/PopupTypes";
@@ -12,21 +12,19 @@ import {PopupTypes} from "../popups/enums/PopupTypes";
 export class HeaderComponent {
   @ViewChild('searchInput') searchInputRef!: ElementRef;
   @ViewChild('social') social: any;
-  @ViewChild('scrollMenu') scrollMenu: any;
+  @ViewChild('scrollMenu') scrollMenu!: any;
+  @ViewChild('searchField') searchFieldRef!: ElementRef;
   protected items: MenuItem[] = [
     {label: 'Profiles', icon: 'pi pi-book', routerLink: ['/profiles']},
     {label: 'Companies', icon: 'pi pi-video', routerLink: ['/companies']},
     {label: 'News and Votes', icon: 'pi pi-book', routerLink: ['/news']}
   ];
-  protected lmao: string[] = ['Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!',
-    'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!',
-    'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!',
-    'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!', 'Long test!']
   protected socialStyleCorrection!: Partial<CSSStyleDeclaration>;
   protected searchPopoverStyleCorrection!: Partial<CSSStyleDeclaration>;
   protected searchedPhrase!: string;
+  private searchBarListener: (() => void) | null = null;
 
-  constructor(private popupsService: PopupsService) {
+  constructor(private popupsService: PopupsService, private renderer: Renderer2) {
   }
   ngOnInit(): void {
     this.socialStyleCorrection = {};
@@ -51,8 +49,16 @@ export class HeaderComponent {
   protected onSocialHide(): void {
     this.socialStyleCorrection = {};
   }
-  protected showSearchPopover(event: FocusEvent): void {
+  protected onSearchBarClick(event: MouseEvent): void {
     this.scrollMenu.show(event);
+    setTimeout((): void => {
+      this.searchBarListener = this.renderer.listen('document', 'click', (event: Event): void => {
+        if (!this.searchFieldRef.nativeElement.contains(event.target) && !this.searchInputRef.nativeElement.contains(event.target)) {
+          console.log("tirggered")
+          this.hideSearchMenu();
+        }
+      });
+    }, 0);
   }
 
   protected onSearchPopoverShow(): void {
@@ -66,7 +72,16 @@ export class HeaderComponent {
     this.searchPopoverStyleCorrection = {}
   }
 
-  protected onSearchBlur(event: FocusEvent): void {
+  private hideSearchMenu(): void {
     this.scrollMenu.hide();
+    if (this.searchBarListener) {
+      this.searchBarListener();
+      this.searchBarListener = null;
+    }
   }
+
+  ngAfterViewInit(): void {
+    console.log(this.scrollMenu);
+  }
+
 }

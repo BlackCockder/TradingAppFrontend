@@ -12,10 +12,9 @@
     </div>
   </section>
   <section id="header-search-bar" class="h-full flex items-center justify-center header-search-bar-responsive">
-    <p-iconfield #searchBar styleClass="w-full" class="relative">
+    <p-iconfield styleClass="w-full" class="relative">
       <p-inputicon styleClass="pi pi-search"/>
-      <input (blur)="onSearchBlur($event)"
-             (focus)="showSearchPopover($event)"
+      <input (click)="onSearchBarClick($event)"
              type="text"
              pInputText
              fluid
@@ -23,8 +22,11 @@
              placeholder="Search"
              [(ngModel)]="searchedPhrase"
       />
+      <div id="search-field-wrapper" #searchField>
+
+      </div>
     </p-iconfield>
-    <p-popover #scrollMenu [appendTo]="searchBar" [dismissable]="false" [style]="searchPopoverStyleCorrection"
+    <p-popover #scrollMenu [appendTo]="searchField" [dismissable]="false" [style]="searchPopoverStyleCorrection"
                styleClass="w-full" (onShow)="onSearchPopoverShow()" (onHide)="onSearchPopoverHide()">
       <p-button styleClass="w-full bg-red-900">
         {{searchedPhrase}} - Search in markets, posts, users and more
@@ -74,7 +76,7 @@
     <p-button label="Login" severity="contrast" variant="text" (onClick)="triggerLogin()"
               icon="pi pi-arrow-circle-right" iconPos="right">
     </p-button>
-    <a class="w-28" pButton pRipple severity="warn" routerLink="/register">
+    <a class="w-28" pButton pRipple severity="primary" routerLink="/register">
       <span pButtonLabel>Sign up</span>
     </a>
   </section>
