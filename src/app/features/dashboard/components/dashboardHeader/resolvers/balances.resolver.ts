@@ -1,5 +1,5 @@
 import { ResolveFn } from '@angular/router';
-import {BalanceInterface} from "../interfaces/Balance.interface";
+import {BalanceInterface} from "../../../../../shared/globalServices/Balance.interface";
 import {HttpClient} from "@angular/common/http";
 import {inject} from "@angular/core";
 import {SERVER_IP} from "../../../../../../main";

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -6,26 +6,19 @@ import {Component} from '@angular/core';
     styleUrl: './App.component.scss',
     standalone: false
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private prefersDarkMode: boolean = false;
   protected navbarDisabledUrlList: String[] = [
     "dashboard"
   ];
 
   constructor() {
-    this.prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    this.setDefaultColorTheme(this.prefersDarkMode);
+
   }
 
   ngOnInit(): void {
-
-  }
-
-  protected toggleDarkMode(): void {
-    const element: HTMLHtmlElement | null = document.querySelector('html');
-    if (element) {
-      element.classList.toggle('my-app-dark');
-    }
+    this.prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.setDefaultColorTheme(this.prefersDarkMode);
   }
 
   private setDefaultColorTheme(theme: boolean): void {

@@ -1,10 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {BehaviorSubject, catchError, map, Observable, switchMap, throwError} from "rxjs";
 import {HttpClient, HttpEvent, HttpHandlerFn, HttpHeaders, HttpRequest, HttpResponse} from "@angular/common/http";
 import {SERVER_IP} from "../../main";
 import {RefreshUserData} from "./interfaces/RefreshUserData.interface";
 import {RefreshResponse} from "./interfaces/RefreshResponse.interface";
 import {LoginFormPayload} from "./interfaces/LoginFormPayload.interface";
+import {MessageDisplayService} from "../shared/globalServices/MessageDisplay.service";
+import {StateManagerService} from "../shared/globalServices/StateManager.service";
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +16,9 @@ export class AuthService {
   private sessionRefreshInterval: number = 15 * 60 * 1000;
   private logoutWarningTime: number = this.sessionRefreshInterval - 30 * 1000;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private injector: Injector) {
     window.addEventListener('storage', (event: StorageEvent) => this.onLocalStorageChange(event));
+
   }
 
   public loginUser(loginFormPayload: LoginFormPayload): Observable<boolean> {
@@ -67,11 +70,12 @@ export class AuthService {
   }
 
   public setLoggedInFlag(state: boolean): void {
-    sessionStorage.setItem('isLoggedInFlag', JSON.stringify(state));
+    localStorage.setItem('isLoggedInFlag', JSON.stringify(state));
+    this.injector.get(StateManagerService).updateLoggedInSubject(state);
   }
 
   public getLoggedInFlag(): boolean {
-    return (sessionStorage.getItem('isLoggedInFlag') ?? '') === 'true';
+    return (localStorage.getItem('isLoggedInFlag') ?? '') === 'true';
   }
 
 
@@ -148,7 +152,6 @@ export class AuthService {
     this.clearUserID();
     this.clearUsernameFromCache();
     this.setLoggedInFlag(false);
-
   }
 
   private updateResetTimerInOtherTabs(): void {
@@ -168,6 +171,12 @@ export class AuthService {
   private onLocalStorageChange(event: StorageEvent): void {
     if (event.key === 'sessionRefresh') {
       this.resetLogoutTimer();
+    }
+    if (event.key === 'isLoggedInFlag') {
+      if(event.newValue === 'false') {
+        this.logoutUser();
+        this.injector.get(MessageDisplayService).triggerToastMessage('error', 'Log out', 'Detected log out in different window!', 5000)
+      }
     }
   }
 }

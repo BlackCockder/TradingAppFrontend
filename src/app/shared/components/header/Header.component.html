@@ -72,13 +72,18 @@
   <div class="h-2/3">
     <p-divider layout="vertical"/>
   </div>
-  <section id="header-user-panel" class="flex items-center justify-evenly header-user-panel-responsive">
+  <section *ngIf="!isLoggedIn" id="header-user-panel-unlogged" class="flex items-center justify-evenly header-user-panel-responsive">
     <p-button label="Login" severity="contrast" variant="text" (onClick)="triggerLogin()"
               icon="pi pi-arrow-circle-right" iconPos="right">
     </p-button>
     <a class="w-28" pButton pRipple severity="primary" routerLink="/register">
       <span pButtonLabel>Sign up</span>
     </a>
+  </section>
+  <section *ngIf="isLoggedIn" id="header-user-panel-logged" class="flex items-center justify-evenly header-user-panel-responsive">
+    <p-panel-menu [model]="this.balances">
+
+    </p-panel-menu>
   </section>
 </section>
 <hr/>

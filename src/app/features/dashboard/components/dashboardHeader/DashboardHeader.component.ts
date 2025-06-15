@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {DashboardHeaderService} from "./services/DashboardHeader.service";
 import {AuthService} from "../../../../auth/Auth.service";
-import {BalanceInterface} from "./interfaces/Balance.interface";
+import {BalanceInterface} from "../../../../shared/globalServices/Balance.interface";
 import {DisplayBalanceInterface} from "./interfaces/DisplayBalance.interface";
 import {DisplayBalanceColors, DisplayBalanceSVGs} from "./enums/DisplayBalance.enum";
 import {DataProcessingService} from "../../../../shared/globalServices/DataProcessing.service";

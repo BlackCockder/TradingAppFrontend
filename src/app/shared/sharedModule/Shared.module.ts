@@ -22,6 +22,7 @@ import {InputGroupAddon} from "primeng/inputgroupaddon";
 import {Badge} from "primeng/badge";
 import {Avatar} from "primeng/avatar";
 import {ScrollPanel} from "primeng/scrollpanel";
+import {PanelMenu} from "primeng/panelmenu";
 
 
 
@@ -58,7 +59,8 @@ import {ScrollPanel} from "primeng/scrollpanel";
         InputGroupAddon,
         Badge,
         Avatar,
-        ScrollPanel
+        ScrollPanel,
+        PanelMenu
     ]
 })
 export class SharedModule { }

@@ -18,6 +18,12 @@ export class DevComponent {
 
   }
 
+  protected toggleDarkMode(): void {
+    const element: HTMLHtmlElement | null = document.querySelector('html');
+    if (element) {
+      element.classList.toggle('my-app-dark');
+    }
+  }
 
   protected login(rememberMe: boolean): void {
     this.authService.loginUser({identifier: "TestUser2", password: "password2!", rememberMe: rememberMe}).subscribe((value) => {
