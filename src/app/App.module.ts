@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AppComponent} from "./App.component";
 import {BrowserModule} from "@angular/platform-browser";
-import {AppConfigModule} from "./config/app-config.module";
+import {AppConfigModule} from "./config/AppConfig.module";
 import {RouterModule} from "@angular/router";
 import {DevModule} from "./dev/modules/Dev.module";
 import {FeaturesModule} from "./features/featuresModule/Features.module";
