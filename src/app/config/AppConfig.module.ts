@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {AppConfig} from "./app.config";
+import {AppConfig} from "./App.config";
 
 @NgModule({
   providers: [
