@@ -9,10 +9,10 @@ import {DataFetcherService} from "../../globalServices/DataFetcher.service";
 import {BalanceInterface} from "../../globalServices/Balance.interface";
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './Header.component.html',
-    styleUrl: './Header.component.scss',
-    standalone: false
+  selector: 'app-header',
+  templateUrl: './Header.component.html',
+  styleUrl: './Header.component.scss',
+  standalone: false
 })
 export class HeaderComponent implements OnDestroy, OnInit {
   @ViewChild('searchInput') searchInputRef!: ElementRef;
@@ -36,6 +36,7 @@ export class HeaderComponent implements OnDestroy, OnInit {
 
   constructor(private popupsService: PopupsService, private renderer: Renderer2, private stateManagerService: StateManagerService, private authService: AuthService, private dataFetcherService: DataFetcherService) {
   }
+
   ngOnInit(): void {
     this.isLoggedIn = this.authService.getLoggedInFlag();
     this.searchBarListener = null;
@@ -44,13 +45,15 @@ export class HeaderComponent implements OnDestroy, OnInit {
     this.searchedPhrase = '';
     this.isLoggedInSubscription = this.stateManagerService.getLoggedInStateObservable().subscribe((value: boolean): void => {
       this.isLoggedIn = value;
-      if(value) {
+      if (value) {
         this.dataFetcherService.fetchBalances().subscribe((value: BalanceInterface): void => {
           this.balances = [
-            {label: `$${value.balance}`,  icon: 'pi pi-book', items: [
+            {
+              label: `$${value.balance}`, icon: 'pi pi-book', items: [
                 {label: `$${value.escrowBalance}`, icon: 'pi pi-book',},
                 {label: `$${value.securityBalance}`, icon: 'pi pi-book',}
-              ]},
+              ]
+            },
           ];
         })
       }
@@ -72,16 +75,17 @@ export class HeaderComponent implements OnDestroy, OnInit {
       left: '0px'
     };
   }
+
   protected onSocialHide(): void {
     this.socialStyleCorrection = {};
   }
+
   protected onSearchBarClick(event: MouseEvent): void {
     this.scrollMenu.show(event);
-    if(this.searchBarListener === null) {
+    if (this.searchBarListener === null) {
       setTimeout((): void => {
         this.searchBarListener = this.renderer.listen('document', 'click', (event: Event): void => {
           if (!this.searchFieldRef.nativeElement.contains(event.target) && !this.searchInputRef.nativeElement.contains(event.target)) {
-            console.log("tirggered")
             this.hideSearchMenu();
           }
         });
