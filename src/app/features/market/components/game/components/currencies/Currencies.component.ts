@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-currencies',
-  imports: [],
   templateUrl: './Currencies.component.html',
-  styleUrl: './Currencies.component.scss'
+  styleUrl: './Currencies.component.scss',
+  standalone: false
 })
 export class CurrenciesComponent {
 
