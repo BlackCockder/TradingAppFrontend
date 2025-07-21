@@ -15,7 +15,6 @@ export function initializeAppFactory(authService: AuthService): () => Promise<an
       authService.setAuthToken(response.authenticationToken);
       authService.setUsernameToCache(response.username);
       authService.setLoggedInFlag(true);
-      console.log('yes')
       setTimeout((): void => {
         messageDisplayService.triggerToastMessage("success", "Logged in", "Logged in due to 'Remember me' activated!", 5000);
       }, 500);
