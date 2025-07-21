@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-aboutUs',
   templateUrl: './AboutUs.component.html',
   styleUrl: './AboutUs.component.scss',
+  standalone: false
 })
 export class AboutUsComponent {
 
