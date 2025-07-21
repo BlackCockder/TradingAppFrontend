@@ -28,7 +28,7 @@
     </p-iconfield>
     <p-popover #scrollMenu [appendTo]="searchField" [dismissable]="false" [style]="searchPopoverStyleCorrection"
                styleClass="w-full" (onShow)="onSearchPopoverShow()" (onHide)="onSearchPopoverHide()">
-      <p-button styleClass="w-full bg-red-900">
+      <p-button styleClass="w-full" severity="contrast" outlined>
         {{searchedPhrase}} - Search in markets, posts, users and more
       </p-button>
       <p class="text-color-darker mt-2">Recent searches</p>
@@ -86,4 +86,4 @@
     </p-panel-menu>
   </section>
 </section>
-<hr/>
+<p-divider styleClass="margin-0-override"></p-divider>
