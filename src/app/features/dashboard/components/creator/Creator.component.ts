@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-creator',
-  imports: [],
   templateUrl: './Creator.component.html',
-  styleUrl: './Creator.component.scss'
+  styleUrl: './Creator.component.scss',
+  standalone: false
 })
 export class CreatorComponent {
 
