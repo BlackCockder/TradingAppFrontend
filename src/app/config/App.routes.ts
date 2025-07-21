@@ -23,7 +23,7 @@ import {gameResolver} from "../features/market/resolvers/Game.resolver";
 import {OfferComponent} from "../features/market/components/offer/Offer.component";
 import {OfferResolver} from "../features/market/components/offer/resolvers/Offer.resolver"
 import {MyBusinessComponent} from "../features/dashboard/components/myBusiness/MyBusiness.component";
-import {MyOrdersComponent} from "../features/dashboard/components/my-orders/my-orders.component";
+import {MyOrdersComponent} from "../features/dashboard/components/myOrders/MyOrders.component";
 import {DisputesComponent} from "../features/dashboard/components/disputes/Disputes.component";
 import {ProfileSettingsComponent} from "../features/dashboard/components/profileSettings/ProfileSettings.component";
 import {AutomationAPIComponent} from "../features/dashboard/components/automationAPI/AutomationAPI.component";
