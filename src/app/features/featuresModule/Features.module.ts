@@ -10,6 +10,7 @@ import {GuideComponent} from "../guide/Guide.component";
 import {HelpCenterComponent} from "../helpCenter/HelpCenter.component";
 import {MarketComponent} from "../market/Market.component";
 import {ProfilesComponent} from "../profiles/Profiles.component";
+import {InputText} from "primeng/inputtext";
 
 
 @NgModule({
@@ -24,10 +25,11 @@ import {ProfilesComponent} from "../profiles/Profiles.component";
     MarketComponent,
     ProfilesComponent
   ],
-  imports: [
-    CommonModule,
-    DashboardModule,
-  ]
+    imports: [
+        CommonModule,
+        DashboardModule,
+        InputText,
+    ]
 })
 export class FeaturesModule {
 }
