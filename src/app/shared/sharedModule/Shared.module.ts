@@ -24,16 +24,19 @@ import {Avatar} from "primeng/avatar";
 import {ScrollPanel} from "primeng/scrollpanel";
 import {PanelMenu} from "primeng/panelmenu";
 import {Page404Component} from "../components/page404/Page404.component";
+import {FooterComponent} from "../components/footer/footer.component";
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    Page404Component
+    Page404Component,
+    FooterComponent
   ],
   exports: [
     HeaderComponent,
+    FooterComponent,
   ],
     imports: [
         CommonModule,
